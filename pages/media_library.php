@@ -70,6 +70,20 @@ echo '<div class="tcell pad10 maroon pointer tacentr valignmiddle"
 echo '[X]</div>';
 echo '</div>';
 
+echo '<div id="flying_progress_bar" class="pad20">';
+
+	echo "<div id='progress_bar' class='progress_bar'>";
+    	echo "<div id='progress_bar_message' class='progress_bar_message'> 0/".count($files)."</div>";
+    	echo "<div id='progress_bar_done' class='progress_bar_done'></div>";
+    echo "</div>";
+
+    echo '<div class="tcell pad10 maroon pointer tacentr valignmiddle"
+                   onclick="
+                      hide_progress_bar();
+                   ">';
+	echo '[X]</div>';
+
+echo '</div>';
 
 echo '<div id="modal_container" style="z-index:10; position:fixed; right:0px; left:0px; top:0px; bottom: 0px; background-color:black; display:none;"></div>';
 
@@ -317,7 +331,7 @@ echo '<div class="calendar_nav">
 				    $relative_file_path = str_replace($config['medial']['media_root_folder'],'',$data['filename']); // cut root media folder
 
 				    $path_components = explode('/',$relative_file_path);
-				    $path_components = array_filter($path_components); // get rid off empty components (i.e. leading '/')
+				    $path_components = array_filter($path_components,'strlen'); // get rid off empty components (i.e. leading '/')
 	                array_pop($path_components);   // remove filename
 	                array_shift($path_components); // remove first component of path as it is suppossed to be a folder inside root_media_folder
 	                $current_folder = implode('/',$path_components);
