@@ -1,6 +1,6 @@
 <?
-//error_reporting(E_ALL);
-error_reporting(0);
+error_reporting(E_ALL);
+//error_reporting(0);
 
 if (!headers_sent()) { header("Content-type: text/html; charset=UTF-8"); }
 
@@ -20,10 +20,10 @@ require_once "../../inc/init.php";
 require_once "../../inc/dbal.php";
 require_once "../../inc/media.php";
 require_once "../../inc/playlist.php";
-
+/*
 require_once "../../inc/id.php";
 require_once "../../inc/id3v2.php";
-
+/**/
 
 reconnect_db();
 
@@ -302,65 +302,39 @@ switch ($request)
     break;
   }
 
-  case "update_from_file":
+  case "media_get_filnames_list":
   {
      $file_list = $_POST['file_list'];
 
-     $error_flag = false;
-     $error_string = '';
      if (!is_array($file_list) or empty($file_list))
      {
         $s = 'ER#nНе указан файл#n';
         echo $s;
         return;
      }
-     else
+
+     $enc_files = array();
+     $context = get_last_context();
+
+     foreach ($file_list as $file_id)
      {
-        $context = get_last_context();
+       // echo $file_id;
+          $file_data = media_library_get_file_data_by_id($file_id);
+          $filename = $file_data['filename'];
+       //echo $filename;
 
-        foreach ($file_list as $file_id)
-        {
-        // echo $file_id;
-           $file_data = media_library_get_file_data_by_id($file_id);
-           $filename = $file_data['filename'];
-        //echo $filename;
+          if (!is_file($filename))
+          {
+           	$error_flag=true;
+           	$error_string.= $file_id.'#tФайл не найден#n';
+          		continue;
+          }
+	   $enc_files[]=base64_encode($filename);
 
-           if (!is_file($filename))
-           {
-            $error_flag=true;
-            $error_string.= $file_id.'#tФайл не найден#n';
-           	continue;
-           	}
-        //echo 'file exists';
-            $mp3_info =get_mp3_tags_and_info($filename);
-
-            $tag_data = $mp3_info['data'];
-            //print_r($tag_data);
-		    $tag_data['filename'] = $filename;
-
-            $result = media_update_track_info_from_file_tag_data($file_id,$tag_data,$context);
-
-            if (!$result)
-            {
-            $error_flag=true;
-            $error_string.= $file_id.'#t'.'Не удалось сохранить в базу'.'#n';
-           	continue;
-           	}
-        }
-       // check_for_deleted_files();
      }
-
-     if ($error_flag)
-     {
-       $s = 'ER#nНе удалось обновить треки#n'.$error_string;
-     }
-     else
-     {
-       $s = 'OK#n';
-     }
-
-    // $s.=var_export($data,true);
-    echo $s;
+     $s = 'OK#n';
+     $s.=implode ("'#t'",$enc_files);
+     echo $s;
     break;
   }
 
@@ -419,6 +393,7 @@ switch ($request)
   case "media_update_file":
   {
     $filename = base64_decode($_POST['filename']);
+    $force_update = ($_POST['force_update']=='Y')?true:false;
 
     if (strpos($filename, $config['medial']['media_root_folder'])!==0){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
     $filename_parts = explode('/',$filename);
@@ -429,7 +404,7 @@ switch ($request)
     $context = get_last_context();
 
    // echo "OK#n";
-    $result = media_add_file_data($filename);
+    $result = media_add_file_data($filename,$force_update);
     if ($result['error'])
     {
     	echo "ER#nНе удалось обновить файл ".htmlspecialchars($filename).' '.$result['description'];

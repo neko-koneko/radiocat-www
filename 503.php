@@ -34,6 +34,8 @@ $base = "http://".$_SERVER['HTTP_HOST'].(dirname($_SERVER['PHP_SELF']) != "\\" ?
   Радио Барсик
  </H1>
 
+ <img src='<?=$base?>files/images/503/503.jpg'>
+
  <H2>
   Сайт временно недоступен по причине отказа Базы Данных
  </H2>

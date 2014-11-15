@@ -230,7 +230,6 @@ function media_update_track_info_from_file_tag_data($file_id,$tag_data,$context)
           SET
            `filename`='$filename',
      `date`='$file_date_str',
-     `add_date`='$now_date_str',
      `size`='$size',
      `artist`='$artist',
      `title`='$title',
