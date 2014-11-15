@@ -1,0 +1,18 @@
+.login
+{
+  display: table;
+  margin: 0px auto;
+ /* border: 1px solid red; */
+  text-align:left;
+  width: 1px;
+}
+.login_table
+{
+    border-radius: 5px;
+    margin: 0px auto;
+}
+.login_table td
+{
+	padding: 15px;
+	vertical-align: middle;
+}

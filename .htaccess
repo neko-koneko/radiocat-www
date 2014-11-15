@@ -1,0 +1,9 @@
+php_value register_globals "off"
+AddType application/pdf .pdf
+RewriteEngine on
+RewriteBase /radio
+Options +FollowSymlinks
+ErrorDocument 404 /404.php
+
+RewriteRule ^.htaccess$ - [F]
+RewriteRule ^([a-zA-Z0-9_/-]*)$ index.php
