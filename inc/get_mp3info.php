@@ -2,19 +2,23 @@
 
 function get_mp3_tags_and_info($filename)
 {
+
 	if (!is_file($filename) || !file_exists($filename)){
 		return false;
 		}
 
-	$shellcmd = dirname(__FILE__)."/mp3tag.pl ".escapeshellarg ($filename);
+	$shellcmd = dirname(__FILE__)."/mp3tag.pl ".escapeshellarg($filename);
+
+//	echo 'cmd='.$shellcmd;
+
 	ob_start();
 	passthru($shellcmd);
 	$perlreturn = ob_get_contents();
 	ob_end_clean();
-
+	//echo "re=".$perlreturn."\r\n";
 	$data = json_decode($perlreturn,true);
 
-	//print_r($data);
+    //print_r($data);
 
     $tag0 = $data['tag0'];
 	$tag1 = $data['tag1'];

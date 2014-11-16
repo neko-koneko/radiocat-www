@@ -27,8 +27,10 @@ function timestamp_to_date($time)
 
 
 function sec_to_hour_min_sec($sec)
-{  $stop = mktime(0,0,$sec,0,0,0);
-  return date('H:i:s',$stop);
+{  $h = floor($sec/3600);
+  $m = floor(($sec%3600)/60);
+  $s = $sec%60;
+  return $h.':'.$m.':'.$s;
 }
 
 

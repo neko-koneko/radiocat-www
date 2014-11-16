@@ -272,7 +272,7 @@ echo '<div class="calendar_nav">
 		           <th></th>
 		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/count/'.$new_order_type.'\'; submit_form(\'form1\');">Cч</th>';
 
-		   			if ($config['medial']['show_file_path']==true)
+		   			if ($config['media']['show_file_path']==true)
 		   			{
 		           	echo '<th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/filename/'.$new_order_type.'\'; submit_form(\'form1\');">Путь к файлу</th>';
 		    		}
@@ -296,6 +296,16 @@ echo '<div class="calendar_nav">
 
 			$all_tracks = get_tracks_by_filter($data,$order_by,$order_type);
 
+            echo '<div class="fleft w100 pad5 filter_result_info">';
+             $pl_time = 0;
+             foreach ($all_tracks as $data)
+               {
+                 $pl_time += $data['length'];
+               }
+		     echo 'Отобрано: '.count($all_tracks).' треков ';
+		     echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).' ('.$pl_time.') сек </span> ';
+
+     		echo '</div>';
 
             $i=0;
 			foreach  ($all_tracks as $data)
@@ -324,11 +334,11 @@ echo '<div class="calendar_nav">
 		   	    echo $data['count'];
 		   	    echo '</td>';
 
-			   	if ($config['medial']['show_file_path']==true)
+			   	if ($config['media']['show_file_path']==true)
 			   	{
 			   	    echo '<td >';
-	                //echo $config['medial']['media_root_folder'];
-				    $relative_file_path = str_replace($config['medial']['media_root_folder'],'',$data['filename']); // cut root media folder
+	                //echo $config['media']['media_root_folder'];
+				    $relative_file_path = str_replace($config['media']['media_root_folder'],'',$data['filename']); // cut root media folder
 
 				    $path_components = explode('/',$relative_file_path);
 				    $path_components = array_filter($path_components,'strlen'); // get rid off empty components (i.e. leading '/')

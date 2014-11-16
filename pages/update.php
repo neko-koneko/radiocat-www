@@ -42,11 +42,11 @@ require_once ('inc/auth_form.php');
 
    <div class="pad20">';
 
-	chdir($config['medial']['media_root_folder']);
-	echo '<h2>Директория медиатеки: '.$config['medial']['media_root_folder'].'</h2>';
+	chdir($config['media']['media_root_folder']);
+	echo '<h2>Директория медиатеки: '.$config['media']['media_root_folder'].'</h2>';
 	echo "<br /><br />";
 
-	$files = scan($config['medial']['media_root_folder']);
+	$files = scan($config['media']['media_root_folder']);
 
 	$context = get_last_context();
 

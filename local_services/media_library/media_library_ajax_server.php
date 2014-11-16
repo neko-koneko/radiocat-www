@@ -304,9 +304,13 @@ switch ($request)
 
   case "media_get_filnames_list":
   {
-     $file_list = $_POST['file_list'];
+     $fileslist = $_POST['fileslist'];
+     $file_id_array = explode(',',$fileslist);
+     $file_id_array = array_map ('intval', $file_id_array);
+     $file_id_array = array_filter($file_id_array);
 
-     if (!is_array($file_list) or empty($file_list))
+     $error_string ='';
+     if (!is_array($file_id_array) or empty($file_id_array))
      {
         $s = 'ER#nНе указан файл#n';
         echo $s;
@@ -316,7 +320,7 @@ switch ($request)
      $enc_files = array();
      $context = get_last_context();
 
-     foreach ($file_list as $file_id)
+     foreach ($file_id_array as $file_id)
      {
        // echo $file_id;
           $file_data = media_library_get_file_data_by_id($file_id);
@@ -332,7 +336,14 @@ switch ($request)
 	   $enc_files[]=base64_encode($filename);
 
      }
+     if ($error_string!=''){
+     $s = 'ER#n';
+     $s.= $error_string;
+     echo $s;
+     return;
+     }
      $s = 'OK#n';
+     $s .= count($enc_files).$error_string.'#n';
      $s.=implode ("'#t'",$enc_files);
      echo $s;
     break;
@@ -369,7 +380,7 @@ switch ($request)
 
   case "media_get_files_list":
   {
-    $files = scan($config['medial']['media_root_folder']);
+    $files = scan($config['media']['media_root_folder']);
 
 	$context = get_last_context();
 
@@ -385,7 +396,8 @@ switch ($request)
     }
 
     $s = 'OK#n';
-    $s.=implode ("'#t'",$enc_files);
+    $s .= count($enc_files).'#n';
+    $s .= implode ("#t",$enc_files);
     echo $s;
   	break;
   }
@@ -395,7 +407,7 @@ switch ($request)
     $filename = base64_decode($_POST['filename']);
     $force_update = ($_POST['force_update']=='Y')?true:false;
 
-    if (strpos($filename, $config['medial']['media_root_folder'])!==0){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
+    if (strpos($filename, $config['media']['media_root_folder'])!==0){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
     $filename_parts = explode('/',$filename);
     if (in_array('..',$filename_parts)){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
     $filename_parts = explode("\\",$filename);
@@ -412,6 +424,10 @@ switch ($request)
     }
 
  	echo "OK#n".$result['description'];
+ 	if (!empty($result['tag']))
+ 	{
+ 		echo "\r\n".var_export($result['tag'],true);
+ 	}
 
 
 

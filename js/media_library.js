@@ -140,10 +140,11 @@ function media_library_get_filenames_by_id(files)
     if (!files || files.length==0){return false;}
     var id_list='';
     var request = 'request=media_get_filnames_list';
+    request += '&fileslist=';
 	for (var i=0;i<files.length; i++)
 	{
 		var file_id = files[i];
-        request += '&file_list['+i+']='+file_id;
+        request += file_id+',';
 	}
     var a = new AJAX(media_library_ajax_server,a_media_library_get_files_list);
   	a.doPost(request);
@@ -272,7 +273,8 @@ function a_media_library_get_files_list(data)
  if (arr[0]=='RELOAD') {window.location.reload(true);}
  if (arr[0]!='OK') {pb_message.innerHTML="Ошибка - "+arr[1]; return;}
 
- media_update_files = arr[1].split('#t');
+ media_update_files = arr[2].split('#t');
+ media_update_file_index = 0;
  media_library_update_files();
 }
 

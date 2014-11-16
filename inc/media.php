@@ -88,6 +88,7 @@ function media_add_file_data($filename,$force_update=false)
     else
     {
     $result['description'] = '<span style="color: green; font-weight:bold;">Файл '.$old_file_data['id'].' '.htmlspecialchars($filename).' уже имеется в медиатеке — обновлён</span><br />';
+    $result['tag']=$tag_data;
     }
   }
  else
@@ -112,6 +113,7 @@ function media_add_file_data($filename,$force_update=false)
 function media_add_track_info_from_file_tag_data($tag_data,$context)
 {
  global $mysqli_connection;
+ global $config;
 
     if (empty ($tag_data) ) {return false;}
 
@@ -133,7 +135,7 @@ function media_add_track_info_from_file_tag_data($tag_data,$context)
 
   $file_date_str = timestamp_to_date(filemtime($filename));
   $now_date_str = date ("Y-m-d H:i:s");
-  $default_rating=3;
+  $default_rating = $config['media']['default_rating'];
   $filename = mysqli_real_escape_string($mysqli_connection,$filename);
   $title = mysqli_real_escape_string($mysqli_connection,$title);
   $artist = mysqli_real_escape_string($mysqli_connection,$artist);
