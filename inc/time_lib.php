@@ -30,7 +30,7 @@ function sec_to_hour_min_sec($sec)
 {  $h = floor($sec/3600);
   $m = floor(($sec%3600)/60);
   $s = $sec%60;
-  return $h.':'.$m.':'.$s;
+  return sprintf( '%02d:%02d:%02d'  , $h,$m,$s);
 }
 
 
