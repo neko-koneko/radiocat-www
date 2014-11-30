@@ -105,7 +105,7 @@ function playlist_model_edit_playlist(){	global $main_request_array;
 
   $playlist_data = get_playlist($load_playlist_id);
 
-  print_r 'PDATA ='.$playlist_data.'<br/>';
+  echo 'PDATA ='.var_export($playlist_data,true).'<br/>';
 
   $playlist_data['id'] = $load_playlist_id;
 
