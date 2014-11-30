@@ -162,7 +162,6 @@ function regenerate_playlist($playlist_id)
 
  $playlist_data = get_playlist($playlist_id);
 
-
  if (!is_array($playlist_data) or empty($playlist_data))
  {   $result['description'] = "error - invalid playlist id";
    return $result;
@@ -173,12 +172,14 @@ function regenerate_playlist($playlist_id)
  $playlist_static = $playlist_data['static'];
  $playlist_rules  = $playlist_data['rules'];
 
- $xml = simplexml_load_string($playlist_rules);
+ $playlist_data['ruleset']=json_decode($playlist_data['rules'],true);
+
+ /*$xml = simplexml_load_string($playlist_rules);
 
  if (!$xml)
  { 	$result['description'] = 'error - cannot load xml';
  	return $result;
- }
+ }  /**/
 
  echo '<br />Начинаю обработку правил <br /><br />';
 
@@ -186,13 +187,11 @@ function regenerate_playlist($playlist_id)
 
 
  $final_playlist = array();
- $ruleset = array();
+ /*$ruleset = array();
  $track_stats = array(); $i=0;
  foreach($xml->rule as $rule)
  {
         $attr = $rule->attributes();
-       /* echo '<br /><br />--';
-        print_r ($attr); echo '--<br />';  /**/
 
         $data = array();
         foreach ($attr as $a => $b)
@@ -207,13 +206,16 @@ function regenerate_playlist($playlist_id)
 
         $track_stats[$i] = $data;
         $track_stats[$i]['tracks_count'] = $tracks_count;
-       // $track_stats[$i]['max_tracks_count'] = $max_tracks_count;
 
         $i++;
- }
+ } /**/
+
+ $final_playlist_data = generate_dynamic_playlist($playlist_data);
+	    $final_playlist =  $final_playlist_data['data'];
+	    echo $final_playlist_data['view'];
 
 
- echo 'Шаг 2 - Анализ результатов<br /><br />';
+ /*echo 'Шаг 2 - Анализ результатов<br /><br />';
  $playlist_total_required_track_count =0;
  $playlist_total_found_track_count =0;
  $deficite_flag = false;
@@ -327,13 +329,6 @@ function regenerate_playlist($playlist_id)
                          }
 
 
-			 	 /*$playlist = array();
- 			     $map = generate_random_map($tracks_count,$max_tracks_count);
-
-			     foreach ($map as $map_data)
-			       {
-			        $playlist[] = $search_result[$map_data];
-			       }/**/
 				}
 				else
 				{
@@ -343,7 +338,7 @@ function regenerate_playlist($playlist_id)
           $final_playlist= array_merge($final_playlist,$playlist);
 	      }
       }
- }
+ } /**/
 
  echo '<br />Шаг 3 - Сборка плейлиста<br /><br />';
 
