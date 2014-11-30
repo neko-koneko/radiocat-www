@@ -117,7 +117,9 @@ function playlist_model_edit_playlist(){	global $main_request_array;
 
    print_playlist_view('edit',$playlist_data);}
 
-function generate_dynamic_playlist($playlist_data){	global $main_request_array;
+function generate_dynamic_playlist($playlist_data,$view_mode=null){	global $main_request_array;
+
+	echo "WM=".$view_mode;
 
 	$result = array(); $s='';
 
@@ -146,6 +148,8 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
     if( $rules['special']['common']['max_tracks']>0 || $rules['special']['common']['max_total_time'] !='')
     {        $global_maxtracks_priority = true;    }
 
+    //print_r ($playlist_data);
+
 	foreach ($rules as $rule_id => $rule)
 	   {
 	        //echo $rule_id;
@@ -154,7 +158,9 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
 	        foreach ($rule as $value) {if ($value!=''){$filter_empty = false; break;}  }
 	        if ($id!=1 and $filter_empty) {continue;}
 
-            $s.= get_filter_form($id,$rule);
+            if ($view_mode != 'nofilterform') {            	$s.= get_filter_form($id,$rule);
+            }
+            else {                $s.= get_print_filter_info($id,$rule);            }
 
             $max_tracks_count =  intval($rule['max_tracks_count']);
 

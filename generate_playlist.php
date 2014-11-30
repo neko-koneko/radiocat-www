@@ -210,7 +210,7 @@ function regenerate_playlist($playlist_id)
         $i++;
  } /**/
 
- $final_playlist_data = generate_dynamic_playlist($playlist_data);
+ $final_playlist_data = generate_dynamic_playlist($playlist_data,'nofilterform');
 	    $final_playlist =  $final_playlist_data['data'];
 	    echo $final_playlist_data['view'];
 

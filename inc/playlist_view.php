@@ -441,6 +441,53 @@ function get_filter_form($id,$data)
 	        return $s;
 }
 
+function get_print_filter_info($id,$data)
+{
+			$artist = $data['artist'];
+			$title = $data['title'];
+			$genre = $data['genre'];
+			$bpm_high = $data['bpm_high'];
+			$bpm_low = $data['bpm_low'];
+			$camelot_ton = $data['camelot_ton'];
+
+			$rating_low = $data['rating_low'];
+			$rating_high = $data['rating_high'];
+			$date_time_first = $data['date_time_first'];
+			$date_time_last = $data['date_time_last'];
+			$year = $data['year'];
+			$context = $data['context'];
+			$max_tracks_count = $data['max_tracks_count'];
+            $date_time_offset = $data['date_time_offset'];
+            $comment = $data['comment'];
+
+            $count_priority = (isset($data['count_priority']) and $data['count_priority']=="Y");
+
+
+	  	    $s = '';
+
+	        $s.= '<h2 class="fleft">Правило № '.$id.'</h2>';
+
+
+			$s.= 'Исполнитель <b>'.$artist.'</b><br/>';
+			$s.= 'Название <b>'.$title.'</b><br/>';
+			$s.= 'Год выхода трека <b>'.$year.'</b><br />';
+			$s.= 'Жанр <b>'.$genre.'</b><br />';
+			$s.= 'bpm нижняя граница <b>'.$bpm_low.'</b><br />';
+			$s.= 'bpm верхняя граница <b>'.$bpm_high.'</b><br />';
+			$s.= 'Тональность <b>'.$camelot_ton.'</b><br />';
+			$s.= 'Рейтинг нижняя граница <b>'.$rating_low.'</b><br />';
+			$s.= 'Рейтинг верхняя граница <b>'.$rating_high.'</b><br />';
+			$s.= 'Время добавления (начало интервала, ГГГГ-ММ-ДД) <b>'.$date_time_first.'</b><br />';
+			$s.= 'Время добавления (конец интервала, ГГГГ-ММ-ДД) <b>'.$date_time_last.'</b><br />';
+			$s.= 'Добавленые в последние <b>'.$date_time_offset.'</b> дней <br />';
+			$s.= 'Коментарий содержит <b>'.$comment.'</b><br />';
+	 		$s.= 'Число треков <b>'.$max_tracks_count.'</b><br />';
+	 		$s.= 'Приоритет новых треков <b>';
+			$s.=($count_priority=="Y")?"ДА":"НЕТ";
+			$s.='</b><br />';
+	        return $s;
+}
+
 
 function get_playlist_select($cntrl_attrib,$static="",$selected=0)
 {
