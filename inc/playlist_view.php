@@ -778,7 +778,7 @@ echo '</div>';
 
 function print_playlist_common_filter_block($playlist_data){    echo '<div class="fleft w100 pad20 bbsz asc fleft filter_rule" >';
 
-  	print_r($playlist_data);
+  	//print_r($playlist_data);
 
   	$common_rules = $playlist_data['ruleset']['special']['common'];
 
