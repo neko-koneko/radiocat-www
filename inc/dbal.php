@@ -203,15 +203,24 @@ function edit_playlist($playlist_id,$playlist_name,$playlist_static,$playlist_ru
  $playlist_rules =  mysqli_real_escape_string($mysqli_connection,$playlist_rules);
  $playlist_static = ($playlist_static=="Y")?"Y":"N";
 
- $query = mysqli_query($mysqli_connection,
- "UPDATE `playlists`
-  SET `name` = '".$playlist_name."',
-      `static` = '".$playlist_static."',
-      `rules` = '".$playlist_rules."'
-  WHERE `id` = '".$playlist_id."'
-  "
-  );
-
+ $playlist_data = get_playlist($playlist_id);
+ if (empty($playlist_data))
+ {
+	 $qry = "INSERT INTO `playlists`
+	  (`id`,`name`,`static`,`rules`)
+	   VALUES ('".$playlist_id."','".$playlist_name."','".$playlist_static."','".$playlist_rules."');
+	  ";
+ }
+ else
+ {
+     $qry = "UPDATE `playlists`
+	  SET `name` = '".$playlist_name."',
+	      `static` = '".$playlist_static."',
+	      `rules` = '".$playlist_rules."'
+	  WHERE `id` = '".$playlist_id."'
+	  ";
+ }
+ $query = mysqli_query($mysqli_connection,$qry);
  if(!$query) {return $result;}
  return true;
 }
