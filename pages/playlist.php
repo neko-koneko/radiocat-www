@@ -31,17 +31,17 @@ echo '<script type="text/javascript" src="'.$base.'/js/tablednd.js"></script>';
 switch($main_request_array[1])
 {
 	case 'delete':
-		playlist_model_delete_playlist_action();
-		break;
-	case 'edit':
-        playlist_model_edit_playlist_action();
-        break;
-	case 'manager':
-		print_playlist_manager('new');
+		playlist_model_delete_playlist();
 		break;
 	case 'new':
 		$playlist_data['ruleset']=$_POST['rule'];
   		print_playlist_view('new',$playlist_data);
+		break;
+	case 'edit':
+        playlist_model_edit_playlist();
+        break;
+	case 'manager':
+		print_playlist_manager('new');
 		break;
 	case 'add':
 		print_playlist_view('add');

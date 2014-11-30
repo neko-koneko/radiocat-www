@@ -168,8 +168,6 @@ function  print_playlist_edit($playlist_data,$playlist_id,$order_type,$use_sort_
 	echo '</div>';
 }
 
-
-
 function  print_playlist_new($playlist_data,$playlist_id,$order_type,$use_sort_header=false)
 {
     global $base;
@@ -567,13 +565,6 @@ echo '</div>';
 
 function print_playlist_view($mode='new',$playlist_data='')
 {
-	global $base; global $main_request_array;
-
-	$playlist_id=$playlist_data['id'];
-	$playlist_name=$playlist_data['name'];
-	$playlist_static=($playlist_data['static']=='Y'?'Y':'N');
-	$rules= $playlist_data['ruleset'];
-
 	if ($mode=='add')
 	{
 	    print_playlist_view_add($playlist_data);
@@ -588,174 +579,12 @@ function print_playlist_view($mode='new',$playlist_data='')
 
 	if ($mode=='new')
 	{
-	 print_playlist_view_new($playlist_data);
+	 $playlist_data['static'] = 'N';
+	 print_playlist_view_edit($playlist_data);
 	 return;
 	}
 }
 
-function print_playlist_view_new($playlist_data)
-{
- global $base; global $main_request_array;
- global $utf_symbol;
-
- $playlist_id=$main_request_array[2];
- $playlist_id = intval($playlist_id);
- $playlist_static='Y';
-
- $order_by   = $main_request_array[3];
-
- $order_type = $main_request_array[4];
- $order_type       = ($order_type=='' or $order_type=='up')?'up':'down';
- $new_order_type   = ($order_type=='up')?'down':'up';
-
- $playlist_id=$playlist_data['id'];
- $playlist_name=$playlist_data['name'];
- $playlist_static=($playlist_data['static']=='Y'?'Y':'N');
- $rules= $playlist_data['ruleset'];
-
- echo '<div id="helper"></div>';
- echo '<div class="calendar_nav">
-      <table class="w100 debug ctable calendar_nav">
-        <tr>
-           <td class="w10p pointer" onclick="window.location.href=\''.$base.'/\'"> <b>'.$utf_symbol['HOUSE_BUILDING'].'﻿</b> </td>
-           <td>Создание динамического плейлиста
-           </td>
-        </tr>
-      </table>
-   </div>';
-
- echo '<div class="pad20" >';
-    echo '<H1>Правила для плейлиста</H1>';
-
-	echo '<form method="POST" action="" id="form1">';
-
-	echo '<div id="filter_form"  class="fleft w100" >';
-
-
-	$final_playlist_data = generate_dynamic_playlist($playlist_data);
-    $final_playlist =  $final_playlist_data['data'];
-    echo $final_playlist_data['view'];
-
-
-	echo '</div>';
-
-
- echo '<div class="fleft w100 pad10"></div>';
-
-    echo '<div  class="fleft w100">';
-
-	    echo '<div class="fleft w100">';
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium" onclick = "get_filter_form();">';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time pad10"><b>[+]</b></td>
-			              <td class="job_name pad10" >Добавить правило</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium" onclick="submit_form(\'form1\');">';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time pad10"><b>[⇒]</b></td>
-			              <td class="job_name pad10" >Отобрать</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-		echo '</div>' ;
-
-	   echo '<div class="fleft w100 pad10"></div>';
-
- echo '</div>';
- echo '</form>';
-
- echo '<script type="text/javascript">   var filter_rule_form_id = '.$id.';  </script>';
-
-
- shuffle($final_playlist);
-
-
- echo '<div class="fleft w100 pad10"></div>';
- echo '<div  class="fleft w100">';
-
-	if (!empty($final_playlist))
-	{
-    echo '<div class="fleft w100 pad10"></div>';
-	    echo '<h1>Результаты отбора</h1>';
-
-    echo '<div class="fleft w100 pad10"></div>';
-
-     echo '<div class="fleft w100 pad5 filter_result_info">';
-             $pl_time = 0;
-             foreach ($final_playlist as $pl_element)
-               {
-                 $pl_time += $pl_element['length'];
-               }
-		     echo 'Отобрано: '.count($final_playlist).' треков ';
-		     echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).'</span> ';
-		     if($final_playlist_repeated_track)
-		     {
-		      echo '<span class="message_warn">С повторами</span><br />';
-		     }
-		     else
-		     {
-		      echo '<span class="message_ok">Без повторов</span><br />';
-		     }
-     echo '</div>';
-
-     echo '<div class="fleft w100 pad10"></div>';
-
-		print_playlist($final_playlist);
-
-
-      /*  $i=0;
-		foreach ($final_playlist as $pl_element)
-		{
-          echo '<input type="hidden" name="final_playlist['.$i.']" value="'.$pl_element['id'].'">';
-          $i++;
-		}               /**/
-          echo '<input type="hidden" id="playlist_static_flag" value="'.$playlist_static.'">';
-
-
-    echo '<div class="fleft w100 pad10"></div>';
-
-
-
-      echo '<div class="fleft w100">';
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium"
-			onclick="show_modal_window_playlist_save(\''.$playlist_id.'\',\''.$playlist_name.'\');">';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time pad10"><b>[⇩]</b></td>
-			              <td class="job_name pad10" >Сохранить</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium"
-            onclick="window.location.href=\''.$base.'/playlist/edit/'.$playlist_id.'\'"
-			>';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time red pad10"><b>[R]</b></td>
-			              <td class="job_name pad10" >Сброс</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-		echo '</div>' ;
-
-    echo '<div class="fleft w100 pad10"></div>';
-	}
- echo '</div>';
-
-echo '<div id="modal_container" style="z-index:10; position:fixed; right:0px; left:0px; top:0px; bottom: 0px; background-color:black; display:none;"></div>';
-
-
-echo '</div>';
-
-}
 
 
 
@@ -879,31 +708,25 @@ function print_playlist_view_edit_dynamic($playlist_data)
  global $base; global $main_request_array;
  global $utf_symbol;
 
- $playlist_id=$main_request_array[2];
- $playlist_id = intval($playlist_id);
- $playlist_static='Y';
-
- $order_by   = $main_request_array[3];
-
- $order_type = $main_request_array[4];
- $order_type       = ($order_type=='' or $order_type=='up')?'up':'down';
- $new_order_type   = ($order_type=='up')?'down':'up';
-
  $playlist_id=$playlist_data['id'];
  $playlist_name=$playlist_data['name'];
  $playlist_static=($playlist_data['static']=='Y'?'Y':'N');
  $rules= $playlist_data['ruleset'];
 
 
-
 echo '<div id="helper"></div>';
  echo '<div class="calendar_nav">
       <table class="w100 debug ctable calendar_nav">
         <tr>
-           <td class="w10p pointer" onclick="window.location.href=\''.$base.'/\'"> <b>'.$utf_symbol['HOUSE_BUILDING'].'﻿</b> </td>
-           <td>Редактирование динамического плейлиста «'.$playlist_name.'»
-           </td>
-        </tr>
+           <td class="w10p pointer" onclick="window.location.href=\''.$base.'/\'"> <b>'.$utf_symbol['HOUSE_BUILDING'].'</b></td>';
+           if ($playlist_id==0)
+           {            echo '<td>Создание динамического плейлиста</td>';
+           	}
+           	else
+           	{
+            echo '<td>Редактирование динамического плейлиста «'.$playlist_name.'»</td>';
+           }
+  echo '</tr>
       </table>
    </div>';
 
@@ -912,320 +735,37 @@ echo '<div id="helper"></div>';
 
 	echo '<form method="POST" action="" id="form1">';
 
-	echo '<div id="filter_form"  class="fleft w100" >';
+		echo '<div id="filter_form"  class="fleft w100" >';
 
+		$final_playlist_data = generate_dynamic_playlist($playlist_data);
+	    $final_playlist =  $final_playlist_data['data'];
+	    echo $final_playlist_data['view'];
 
-	$id = 1;
-	$final_playlist = array();
-	$final_playlist_repeated_track = false;
-	 foreach ($rules as $rule_id => $trackdata)
-	   {
-	        $filter_empty = true;
-	        foreach ($trackdata as $value) {if ($value!=''){$filter_empty = false; break;}  }
-	        if ($id!=1 and $filter_empty) {continue;}
+        $next_rule_id = $final_playlist_data['info']['rules_processed'];
+        echo '<script>var filter_rule_form_id='.$next_rule_id.';</script>';
 
-            echo get_filter_form($id,$trackdata);
+		echo '</div>';
 
-	        $search_result = get_tracks_by_filter($trackdata);
-			$tracks_count = count($search_result);
+		print_playlist_add_filter_block();
 
-			$max_tracks_count =  $trackdata['max_tracks_count'];
-			$max_tracks_count = intval($max_tracks_count);
+		print_playlist_common_filter_block($playlist_data);
 
-			$pl_time_all = 0;
-	                 foreach ($search_result as $pl_element)
-	                   {
-	                     $pl_time_all += $pl_element['length'];
-	                   }
+	echo '</form>';
 
-             $count_priority = ($trackdata['count_priority']=="Y");
+	shuffle($final_playlist);
 
-			//print_r ($trackdata); echo "cp=".$count_priority;
-
-	        echo '<div class="fleft w100 pad5 filter_result_info">';
-              if ($max_tracks_count>0)  // в правилах задано ограничение на число треков
-				{
-				  echo 'правило '.$rule_id.': в правилах задано ограничение на число треков <br />';
-			 	  $playlist = array();
-
-						 if	($max_tracks_count<$tracks_count) // найдено треков больше чем нужно
-						 {
-						      echo 'правило '.$rule_id.': найдено треков больше чем нужно<br />';
-
-						     if ($count_priority) // в правилах задано сортровать по приоритету счётчика числа проигрываний
-							 {
-							    echo 'правило '.$rule_id.': режим приоритета новых треков <b>ВКЛ</b><br />';
-							    $tmp = array(); $i=0;
-	                            foreach ($search_result as $trackdata)   // разобъём на блоки по числу проигрываний
-	                            {
-	                              $tmp[$trackdata['count']][$i] = $trackdata;
-	                              $i++;
-	                            }
-	                            ksort($tmp,SORT_NUMERIC);   // сортировка блоков
-
-	                            $tmp2 = array();$i=0;         // забиваем блоками стек, пока не будет достигнут нужный размер или более
-	                            foreach($tmp as $count_group)
-	                            {
-	                             foreach ($count_group as $trackdata)
-	                             {
-	                                $tmp2[$i] = $trackdata;
-	                                $i++;
-	                             }
-	                             if ($i>=$max_tracks_count) {break;}
-	                            }
-
-	                            shuffle($tmp2); // перемешать
-
-	                            for ($i=0; $i<$max_tracks_count; $i++) // обрезать под нужное число треков и записать в выходной массив
-	                            {
-	                               $playlist[$i] = $tmp2[$i];
-	                            }
-
-						     }
-					 	 	else
-						 	 {
-						 	    echo 'правило '.$rule_id.': режим приоритета новых треков <b>ВЫКЛ</b><br />';
-
-							    shuffle($search_result); // перемешать
-
-                                $i=0;
-	                            foreach ($search_result as $trackdata)
-	                            {
-	                               $playlist[$i] = $trackdata;
-	                               $i++;
-	                               if ($i==$max_tracks_count){break;}
-	                            }
-						 	 }
-         				 }
-                         else
-                         {
-                                echo 'правило '.$rule_id.': найдено треков Меньше или сколько требуется<br />';
-							    echo 'правило '.$rule_id.': режим приоритета новых треков <b>выключен</b><br />';
-
-	                         	$map = generate_random_map($tracks_count,$max_tracks_count); // забить массив (если треков меньше чем нужно, то можно забить с дублями, и, если это возможно, без повторов)
-						       	//print_r ($map);
-						     	foreach ($map as $map_data)
-						       	{
-						        	$playlist[] = $search_result[$map_data];
-						       	}
-
-                         }
-
-
-			 	 /*$playlist = array();
- 			     $map = generate_random_map($tracks_count,$max_tracks_count);
-
-			     foreach ($map as $map_data)
-			       {
-			        $playlist[] = $search_result[$map_data];
-			       }/**/
-				}
-				else
-				{
-				echo 'правило '.$rule_id.': режим приоритета новых треков <b>выключен автоматически</b> — не указан предел отбора числа треков<br />';
-				$playlist = $search_result;
-				}
-			/*	if ($tracks_count>0)
-				{
-					if ($max_tracks_count>0)
-					{
-					 	 $playlist = array();
-
-						 if	($count_priority and $max_tracks_count<$tracks_count)
-							 {
-							    $tmp = array(); $i=0;
-	                            foreach ($search_result as $trackdata)
-	                            {
-	                              $tmp[$trackdata['count']][$i] = $trackdata;
-	                              $i++;
-	                            }
-	                            ksort($tmp,SORT_NUMERIC);
-
-	                            $tmp2 = array();$i=0;
-	                            foreach($tmp as $count_group)
-	                            {
-	                             foreach ($count_group as $trackdata)
-	                             {
-	                                $tmp2[$i] = $trackdata;
-	                                $i++;
-	                             }
-	                             if ($i>=$max_tracks_count) {break;}
-	                            }
-
-	                            shuffle($tmp2);
-
-	                            for ($i=0; $i<$max_tracks_count; $i++)
-	                            {
-	                               $playlist[$i] = $tmp2[$i];
-	                            }
-
-						     }
-					 	 	else
-						 	 {
-	                         	$map = generate_random_map($tracks_count,$max_tracks_count);
-						       	//print_r ($map);
-						     	foreach ($map as $map_data)
-						       	{
-						        	$playlist[] = $search_result[$map_data];
-						       	}
-						 	 }
-
-	                 $pl_time = 0;
-	                 foreach ($playlist as $pl_element)
-	                   {
-	                     $pl_time += $pl_element['length'];
-	                   }
-
-						if ($max_tracks_count<=$tracks_count)
-						{
-						   echo 'Отобрано: '.$max_tracks_count.' треков (из '.$tracks_count.') ';
-						   echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).'</span> ';
-						   echo '<span class="maroon"> / '.sec_to_hour_min_sec($pl_time_all).'</span> ';
-	                       echo '<span class="message_ok">Без повторов</span><br />';
-						}
-						else
-
-						{
-						   echo 'Отобрано: '.$max_tracks_count.' треков (из '.$tracks_count.') ';
-						   echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).'</span> ';
-						   echo '<span class="maroon"> / '.sec_to_hour_min_sec($pl_time_all).'</span> ';
-						   echo '<span class="message_warn">С повторами</span><br />';
-						   $final_playlist_repeated_track = true;
-						}
-					}
-					else
-					{
-					echo 'Отобрано: '.$tracks_count.' треков ';
-	 			    echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time_all).'</span> ';
-					$playlist = $search_result;
-					}
-				}
-				else
-				{
-				echo 'Нет результатов';
-				}   /**/
-				echo '</div>';
-
-		  	    if ($tracks_count>0)
-		  	     {  print_playlist($playlist);
-		            $final_playlist= array_merge($final_playlist,$playlist);
-	             }
-
-			echo '</div>';
-	        $id++;
-
-	    }
-	echo '</div>';
-
-
- echo '<div class="fleft w100 pad10"></div>';
-
-    echo '<div  class="fleft w100">';
-
-	    echo '<div class="fleft w100">';
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium" onclick = "get_filter_form();">';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time pad10"><b>[+]</b></td>
-			              <td class="job_name pad10" >Добавить правило</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium" onclick="submit_form(\'form1\');">';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time pad10"><b>[⇒]</b></td>
-			              <td class="job_name pad10" >Отобрать</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-		echo '</div>' ;
-
-	   echo '<div class="fleft w100 pad10"></div>';
-
-echo '</div>';
-echo '</form>';
-
-echo '<script type="text/javascript">   var filter_rule_form_id = '.$id.';  </script>';
-
-
-shuffle($final_playlist);
-
-
-   echo '<div class="fleft w100 pad10"></div>';
- echo '<div  class="fleft w100">';
+   	echo '<div class="fleft w100 pad10"></div>';
+ 	echo '<div  class="fleft w100">';
 
 	if (!empty($final_playlist))
 	{
-    echo '<div class="fleft w100 pad10"></div>';
-	    echo '<h1>Результаты отбора</h1>';
-
-    echo '<div class="fleft w100 pad10"></div>';
-
-     echo '<div class="fleft w100 pad5 filter_result_info">';
-             $pl_time = 0;
-             foreach ($final_playlist as $pl_element)
-               {
-                 $pl_time += $pl_element['length'];
-               }
-		     echo 'Отобрано: '.count($final_playlist).' треков ';
-		     echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).'</span> ';
-		     if($final_playlist_repeated_track)
-		     {
-		      echo '<span class="message_warn">С повторами</span><br />';
-		     }
-		     else
-		     {
-		      echo '<span class="message_ok">Без повторов</span><br />';
-		     }
-     echo '</div>';
-
-     echo '<div class="fleft w100 pad10"></div>';
-
-		print_playlist($final_playlist,true);
-
-
-      /*  $i=0;
-		foreach ($final_playlist as $pl_element)
-		{
-          echo '<input type="hidden" name="final_playlist['.$i.']" value="'.$pl_element['id'].'">';
-          $i++;
-		}               /**/
-          echo '<input type="hidden" id="playlist_static_flag" value="'.$playlist_static.'">';
-
-
-    echo '<div class="fleft w100 pad10"></div>';
-
-
-
-      echo '<div class="fleft w100">';
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium"
-			onclick="show_modal_window_playlist_save(\''.$playlist_id.'\',\''.$playlist_name.'\');">';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time pad10"><b>[⇩]</b></td>
-			              <td class="job_name pad10" >Сохранить</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium"
-            onclick="window.location.href=\''.$base.'/playlist/edit/'.$playlist_id.'\'"
-			>';
-			 echo '<table class="">
-			            <tr class="pointer pad10">
-			              <td class="job_time red pad10"><b>[R]</b></td>
-			              <td class="job_name pad10" >Сброс</td>
-			            </tr>
-			            </table>
-			            ';
-			echo '</div>' ;
-		echo '</div>' ;
-
-    echo '<div class="fleft w100 pad10"></div>';
+    	print_final_playlist_block($final_playlist,$playlist_data);
 	}
+	else
+	{  		print_playlist_total_results();	}
+
+    echo '<div class="fleft w100 pad10"></div>';
+
  echo '</div>';
 
 echo '<div id="modal_container" style="z-index:10; position:fixed; right:0px; left:0px; top:0px; bottom: 0px; background-color:black; display:none;"></div>';
@@ -1235,6 +775,60 @@ echo '</div>';
 
 }
 
+
+function print_playlist_common_filter_block($playlist_data){    echo '<div class="fleft w100 pad20 bbsz asc fleft filter_rule" >';
+
+  	print_r($playlist_data);
+
+  	$common_rules = $playlist_data['ruleset']['special']['common'];
+
+    $max_tracks = $common_rules['max_tracks'];
+    $max_total_time = $common_rules['max_total_time'];
+    $count_priority  = $common_rules['count_priority'];
+    $s.= '<div  class="fleft w100">';
+
+	        $s.= '<div>';
+	        $s.= '<h2 class="fleft">Общие Правила </h2>';
+
+	        $s.= '<div class="fright sym_button pointer" onclick="submit_form(\'form1\');">[➲]</div>';
+
+
+
+	        $s.= '</div>';
+
+			$s.= '<div class="fleft w100 pad5">
+				      <div class="fleft movedownonmedium movedownonsmall w30p">
+				      Количество треков
+				      </div>
+				      <div class="fleft movedownonmedium movedownonsmall w70">
+				        <input  class="w90p"                         		name="rule[special][common][max_tracks]"   type="text" value="'.$max_tracks.'">
+				      </div>
+				  </div> ';
+
+			$s.= '<div class="fleft w100 pad5">
+				      <div class="fleft movedownonmedium movedownonsmall w30p">
+				      Гарантированная длительность(ЧЧ:ММ:CC)
+				      </div>
+				      <div class="fleft movedownonmedium movedownonsmall w70">
+				        <input  class="w90p"                         		name="rule[special][common][max_total_time]"   type="text" value="'.$max_total_time.'">
+				      </div>
+				  </div> ';
+            $s.= '<div class="fleft w100 pad5">
+					  <div class="fleft movedownonmedium movedownonsmall w30p">
+						Приоритет новых треков
+				      </div>
+				      <div class="fleft movedownonmedium movedownonsmall w70">
+						<input type="checkbox" ';
+						if($count_priority) {$s.=' checked="checked" ';}
+						$s.=' name="rule[special][common][count_priority]"    value="';
+						$s.=($count_priority=="Y")?"Y":"N";
+						$s.= '" onclick="checkbox_set_value_on_toggle(this);">';
+				        $s.='</div>
+				 </div>';
+	        $s.= '</div>';
+	        echo  $s;
+
+    echo '</div>';}
 
 
 function print_playlist_view_add()
@@ -1357,6 +951,123 @@ echo '<div id="helper"></div>';
 echo '<div id="modal_container" style="z-index:10; position:fixed; right:0px; left:0px; top:0px; bottom: 0px; background-color:black; display:none;"></div>';
 
 }
+
+
+function print_final_playlist_block($final_playlist,$playlist_data){	echo get_print_final_playlist_block($final_playlist,$playlist_data);	}
+
+function get_print_final_playlist_block($final_playlist,$playlist_data){    global $base;
+    $s='';
+
+	$playlist_id=$playlist_data['id'];
+	$playlist_name=$playlist_data['name'];
+	$playlist_static=($playlist_data['static']=='Y'?'Y':'N');
+	$rules= $playlist_data['ruleset'];
+	$s .=  '<div class="fleft w100 pad10"></div>';
+	$s .=  '<h1>Результаты отбора</h1>';
+
+    $s .=  '<div class="fleft w100 pad10"></div>';
+
+    $s.= get_print_playlist_total_results($final_playlist);
+
+    $s .=  '<div class="fleft w100 pad10"></div>';
+
+	$s.= get_print_playlist($final_playlist);
+
+    $s .=  '<input type="hidden" id="playlist_static_flag" value="'.$playlist_static.'">';
+
+
+    $s .=  '<div class="fleft w100 pad10"></div>';
+
+
+
+      $s .=  '<div class="fleft w100">';
+			$s .=  '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium"
+			onclick="show_modal_window_playlist_save(\''.$playlist_id.'\',\''.$playlist_name.'\');">';
+			 $s .=  '<table class="">
+			            <tr class="pointer pad10">
+			              <td class="job_time pad10"><b>[⇩]</b></td>
+			              <td class="job_name pad10" >Сохранить</td>
+			            </tr>
+			            </table>
+			            ';
+			$s .=  '</div>' ;
+			$s .=  '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium"
+            onclick="window.location.href=\''.$base.'/playlist/edit/'.$playlist_id.'\'"
+			>';
+			 $s .=  '<table class="">
+			            <tr class="pointer pad10">
+			              <td class="job_time red pad10"><b>[R]</b></td>
+			              <td class="job_name pad10" >Сброс</td>
+			            </tr>
+			            </table>
+			            ';
+			$s .=  '</div>' ;
+		$s .=  '</div>' ;
+
+    $s .=  '<div class="fleft w100 pad10"></div>';
+    return $s;}
+
+function print_playlist_total_results($final_playlist){         echo get_print_playlist_total_results($final_playlist);}
+function get_print_playlist_total_results($final_playlist){
+	$s = '';
+	$s .=  '<div class="fleft w100 pad5 filter_result_info">';
+	if (count($final_playlist)==0)
+	{			$s .=  '<span class="message_warn">Ничего не найдено</span><br />';
+	}
+	else
+	{
+		$pl_time = 0;
+		foreach ($final_playlist as $pl_element)
+		{
+			$pl_time += $pl_element['length'];
+		}
+		$s .=  'Отобрано: '.count($final_playlist).' треков ';
+		$s .=  '<span class="maroon">'.sec_to_hour_min_sec($pl_time).'</span> ';
+
+		$doubles = playlist_has_doubles($final_playlist);
+
+		if($doubles)
+		{
+			$s .=  '<span class="message_warn">С повторами</span><br />';
+		}
+		else
+		{
+			$s .=  '<span class="message_ok">Без повторов</span><br />';
+		}
+	}
+    $s .=  '</div>';
+    return $s;
+}
+
+function print_playlist_add_filter_block(){	echo '<div class="fleft w100 pad10"></div>';
+
+    echo '<div  class="fleft w100">';
+
+	    echo '<div class="fleft w100">';
+			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium" onclick = "get_filter_form();">';
+			 echo '<table class="">
+			            <tr class="pointer pad10">
+			              <td class="job_time pad10"><b>[+]</b></td>
+			              <td class="job_name pad10" >Добавить правило</td>
+			            </tr>
+			            </table>
+			            ';
+			echo '</div>' ;
+			echo '<div class="fleft w50 job_plate_50 asc pointer movedownonsmall movedownonmedium" onclick="submit_form(\'form1\');">';
+			 echo '<table class="">
+			            <tr class="pointer pad10">
+			              <td class="job_time pad10"><b>[⇒]</b></td>
+			              <td class="job_name pad10" >Отобрать</td>
+			            </tr>
+			            </table>
+			            ';
+			echo '</div>' ;
+		echo '</div>' ;
+
+	   echo '<div class="fleft w100 pad10"></div>';
+
+ 	echo '</div>';}
+
 
 
 ?>

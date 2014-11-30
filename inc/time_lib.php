@@ -22,6 +22,7 @@ function datetime_to_timestamp($time_str)
  return mktime($hour,$minute,$second,$month,$day,$year);
 }
 
+
 function timestamp_to_date($time)
 {	return date("Y-m-d H:i:s",$time);}
 
@@ -31,6 +32,22 @@ function sec_to_hour_min_sec($sec)
   $m = floor(($sec%3600)/60);
   $s = $sec%60;
   return sprintf( '%02d:%02d:%02d'  , $h,$m,$s);
+}
+
+// input: time in [h[h..]]hh:mm:ss string
+function hour_min_sec_to_sec($str)
+{
+  $sec = 0;  $parts = explode(':',$str,3);
+  $h = intval($parts[0]);  $m = intval($parts[1]);
+  $s = intval($parts[2]);
+
+  if ($h<0){return $sec;}
+  $sec = $h*3600;
+  if ($m<0){return $sec;}
+  $sec += $m*60;
+  if ($s<0){return $sec;}
+  $sec += $s;
+  return $sec;
 }
 
 

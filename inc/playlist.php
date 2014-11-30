@@ -64,7 +64,7 @@ function playlist_sort_playlist_array($final_playlist,$order_by,$order_type)
 }
 
 
-function playlist_model_delete_playlist_action(){	global $main_request_array;
+function playlist_model_delete_playlist(){	global $main_request_array;
 	$playlist_id = intval($main_request_array[2]);
 	if ($playlist_id<=0)
 		 {
@@ -96,73 +96,22 @@ function playlist_model_delete_playlist_action(){	global $main_request_array;
 	   }
 }
 
-function playlist_model_edit_playlist_action(){	global $main_request_array;
-	$load_playlist_id = $main_request_array[2];
-	$load_playlist_id = intval($load_playlist_id);
+function playlist_model_edit_playlist(){	global $main_request_array;
+	$load_playlist_id = intval($main_request_array[2]);
 	if ($load_playlist_id<=0)
 	   {
-	   	echo 'ERROR!'; return;
+	   	echo 'Ошибка! Не указан номер плейлиста'; return;
 	   }
 
   $playlist_data = get_playlist($load_playlist_id);
-  $playlist_id=$playlist_data['id'];
-  $playlist_name=$playlist_data['name'];
 
- if ($_POST['rule']=='')
+ if ($_POST['rule']!='')
   {
-	   $playlist_rules=$playlist_data['rules'];
-
-       if ($playlist_rules!='')
-       {
-		 $xml = simplexml_load_string($playlist_rules);
-			 if (!$xml)
-			 {
-			 	echo 'error - cannot load xml';
-			 	return ;
-			 }
-		 $final_playlist = array();
-		 $ruleset = array();
-		 $track_stats = array(); $i=0;
-		 foreach($xml->rule as $rule)
-		 {
-		        $attr = $rule->attributes();
-		       /* echo '<br /><br />--';
-		        print_r ($attr); echo '--<br />';  /**/
-
-		        $data = array();
-		        foreach ($attr as $a => $b)
-		        {
-		           $data[$a] = $b;
-		        }
-		        $id = $data['id'];
-
-		       /* $max_tracks_count = $data['max_tracks_count'];
-
-		        $search_result = get_tracks_by_filter($data);
-				$tracks_count = count($search_result);
-				$max_tracks_count = intval($max_tracks_count);
-
-		        $track_stats[$i] = $data;
-		        $track_stats[$i]['tracks_count'] = $tracks_count;
-		       // $track_stats[$i]['max_tracks_count'] = $max_tracks_count;
-
-		        $i++; /**/
-		        $ruleset[]=$data;
-		 }
-       $playlist_data['ruleset']=$ruleset;
-	   }
-       else
-       {
-        $playlist_data['id']= $load_playlist_id;
-    	$playlist_data['name']=$playlist_name;
-       }
-
+   $playlist_data['ruleset']=$_POST['rule'];
   }
   else
   {
-    $playlist_data['id']= $load_playlist_id;
-    $playlist_data['name']=$playlist_name;
-    $playlist_data['ruleset']=$_POST['rule'];
+    $playlist_data['ruleset']=json_decode($playlist_data['rules'],true);
   }
 
 
@@ -190,8 +139,17 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
 	$id = 1;
 	$final_playlist = array();
 
+
+    if($rules['special']['common']['count_priority']=="Y")
+    {     	$global_count_priority = true;
+    }
+    if( $rules['special']['common']['max_tracks']>0 || $rules['special']['common']['max_total_time'] !='')
+    {        $global_maxtracks_priority = true;    }
+
 	foreach ($rules as $rule_id => $rule)
 	   {
+	        //echo $rule_id;
+	        if($rule_id == 'special'){            	continue;	        }
 	        $filter_empty = true;
 	        foreach ($rule as $value) {if ($value!=''){$filter_empty = false; break;}  }
 	        if ($id!=1 and $filter_empty) {continue;}
@@ -199,6 +157,7 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
             $s.= get_filter_form($id,$rule);
 
             $max_tracks_count =  intval($rule['max_tracks_count']);
+
 
 	        $new_tracks = get_tracks_by_filter($rule);
 			$tracks_count = count($new_tracks);
@@ -211,9 +170,10 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
 
             $count_priority = ($rule['count_priority']=="Y");
 
+
 	        $s.= '<div class="fleft w100 pad5 filter_result_info">';
 
-            if ($max_tracks_count>0)  // в правилах задано ограничение на число треков
+            if ($max_tracks_count>0 && !$global_count_priority && !$global_maxtracks_priority)  // в правилах задано ограничение на число треков
 				{
 				  $s.= 'правило '.$rule_id.': в правилах задано ограничение на число треков <br />';
 
@@ -228,9 +188,9 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
 							    $s .= 'правило '.$rule_id.': режим приоритета новых треков <b>ВКЛ</b><br />';
 
 							    $tmp = array(); $i=0;
-	                            foreach ($new_tracks as $rule)   // разобъём на блоки по числу проигрываний
+	                            foreach ($new_tracks as $track)   // разобъём на блоки по числу проигрываний
 	                            {
-	                              $tmp[$rule['count']][$i] = $rule;
+	                              $tmp[$track['count']][$i] = $track;
 	                              $i++;
 	                            }
 	                            ksort($tmp,SORT_NUMERIC);   // сортировка блоков
@@ -239,9 +199,9 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
 	                            foreach($tmp as $count_group)
 	                            {
 	                             shuffle($count_group);
-	                             foreach ($count_group as $rule)
+	                             foreach ($count_group as $track)
 	                             {
-	                                $tmp2[$i] = $rule;
+	                                $tmp2[$i] = $track;
 	                                $i++;
 	                             }
 	                             if ($i>=$max_tracks_count) {break;}
@@ -268,7 +228,7 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
          				 }
                          else
                          {
-                                $s.= 'правило '.$rule_id.': найдено треков Меньше или сколько требуется<br />';
+                                $s.= 'правило '.$rule_id.': найдено треков <b>меньше или сколько требуется</b><br />';
 							    $s.= 'правило '.$rule_id.': режим приоритета новых треков <b>выключен</b><br />';
 
 	                         	$map = generate_random_map($tracks_count,$max_tracks_count); // забить массив (если треков меньше чем нужно, то можно забить с дублями, и, если это возможно, без повторов)
@@ -281,25 +241,100 @@ function generate_dynamic_playlist($playlist_data){	global $main_request_array;
                          }
 				}
 				else
-				{
-				$s.= 'правило '.$rule_id.': режим приоритета новых треков <b>выключен автоматически</b> — не указан предел отбора числа треков<br />';
+				{					if($global_count_priority)
+					{
+ 					    $s.= 'правило '.$rule_id.': ограничение на число треков <b>выключено</b> — установлен режим приоритета новых в общем фильтре<br />';
+						$s.= 'правило '.$rule_id.': режим приоритета новых треков <b>выключен</b> — установлен режим приоритета новых в общем фильтре<br />';					}
+					elseif($global_maxtracks_priority)
+					{ 					    $s.= 'правило '.$rule_id.': ограничение на число треков <b>выключено</b> — установлено время или число треков в общем фильтре<br />';
+
+						$s.= 'правило '.$rule_id.': режим приоритета новых треков <b>выключен</b> — установлено время или число треков в общем фильтре<br />';
+					}
+					else
+					{
+						$s.= 'правило '.$rule_id.': режим приоритета новых треков <b>выключен автоматически</b> — не указан предел отбора числа треков<br />';
+					}
 				$playlist = $new_tracks;
 				}
 
 				$s.= '</div>';
+                $s .= get_print_playlist_total_results($playlist);
 
 		  	    if ($tracks_count>0)
-		  	     {  $s .= get_print_playlist($playlist);
+		  	     {
+		  	        $s .= get_print_playlist($playlist);
 		            $final_playlist= array_merge($final_playlist,$playlist);
 	             }
 
 			$s.= '</div>';
 	        $id++;
 
-	    }
+	   }
+
+	if($global_count_priority){	 $tmp = array(); $i=0;
+     foreach ($final_playlist as $data)   // разобъём на блоки по числу проигрываний
+     {
+       $tmp[$data['count']][$i] = $data;
+       $i++;
+     }
+     ksort($tmp,SORT_NUMERIC);   // сортировка блоков
+     $tmp2 = array();
+     foreach ($tmp as $block)
+     {
+        shuffle($block);
+     	foreach ($block as $data)
+     	{     	 $tmp2[] = $data;     	}     }
+     $final_playlist = $tmp2;
+	}
+
+
+	$max_total_time_str=$rules['special']['common']['max_total_time'];
+	if($max_total_time_str!='')
+	{		$max_total_time = hour_min_sec_to_sec($max_total_time_str);      	if (!$global_count_priority){shuffle ($final_playlist);}
+      	$tmp = array(); $tmp2 = array();
+      	$total_time = 0;
+        foreach ($final_playlist as $data){            $track_length = $data['length'];
+            if ($track_length + $total_time > $max_total_time)
+            {            	$tmp2[] = $data;
+            	continue;
+            }
+            $total_time += $track_length;
+            $tmp[] = $data;
+        }
+
+       shuffle($tmp2);
+       $tmp[] = array_pop($tmp2);;
+
+       $final_playlist = $tmp;
+	}
+
+    $max_tracks=$rules['special']['common']['max_tracks'];
+	if ($max_tracks>0)
+	{
+      	//$s.= var_export($final_playlist,true);
+      	if (!$global_count_priority){shuffle ($final_playlist);}
+        $final_playlist = array_slice($final_playlist,0,$max_tracks);
+	}
+
+
 
 	$result['data'] = $final_playlist;
+	$result['info']['rules_processed'] = $id;
 	$result['view'] = $s;
  	return $result;}
+
+function playlist_has_doubles($playlist){
+ 	 $tmp = array();
+
+     foreach ($playlist as $track_data)
+     {
+       $tmp[$track_data['id']] = $track_data;
+     }
+
+     $before_count = count ($playlist);
+     $after_count = count ($tmp);
+     if ($before_count!=$after_count)
+     {      	return true;     }
+     else{     	return false;     }}
 
 ?>
