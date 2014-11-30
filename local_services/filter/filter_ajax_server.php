@@ -64,7 +64,10 @@ switch ($request)
      }
 
      $playlist_id = intval ($playlist_id);
-     if ($playlist_id<=0) // add new
+
+     $playlist_data = get_playlist($playlist_id);
+
+     if ($playlist_id<=0 || empty($playlist_data) ) // add new
      {     $playlist_id = add_playlist($playlist_name,$playlist_static,$playlist_rules);
 
      }
