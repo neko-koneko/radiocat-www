@@ -119,7 +119,7 @@ function playlist_model_edit_playlist(){	global $main_request_array;
 
 function generate_dynamic_playlist($playlist_data,$view_mode=null){	global $main_request_array;
 
-	echo "WM=".$view_mode;
+	//echo "WM=".$view_mode;
 
 	$result = array(); $s='';
 
