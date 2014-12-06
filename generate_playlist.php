@@ -36,91 +36,91 @@ print_r ($db_config);
 $last_job = array();
 foreach ($cron_jobs as $job)
 {
-//$time = $job['time']; $time_str = $job['time'];
- $time = datetime_to_timestamp($time_str);
+	//$time = $job['time'];	 $time_str = $job['time'];
+	 $time = datetime_to_timestamp($time_str);
 
- $now = time();
+	 $now = time();
 
- echo '<h1>ЗАДАЧА '.$job['id'].'</h1>';
- echo '<br />time for task is '.$time.' '.date("Y-m-d h:i:s",$time).' now is '.$now.' '.date("Y-m-d h:i:s",$now).'<br />';
- echo 'playlist_id='.$job['playlist_id']."<br /><br />";
+	 echo '<h1>ЗАДАЧА '.$job['id'].'</h1>';
+	 echo '<br />time for task is '.$time.' '.date("Y-m-d h:i:s",$time).' now is '.$now.' '.date("Y-m-d h:i:s",$now).'<br />';
+	 echo 'playlist_id='.$job['playlist_id']."<br /><br />";
 
- if ($time<$now)
- {
-	if ($job['done']=='N')
-	{
-	 echo '<span style="color:green">задача требует выполнения</span><br /><br />';	 //regenerate_playlist($playlist_id);
+	 if ($time<$now)
+	 {
+		if ($job['done']=='N')
+		{
+		 echo '<span style="color:green">задача требует выполнения</span><br /><br />';		 //regenerate_playlist($playlist_id);
 
-		/* $result = regenerate_playlist($job['playlist_id']);
+			/* $result = regenerate_playlist($job['playlist_id']);
 
-		 switch ($result['status'])
-		 {
-			 case 'OK':
+			 switch ($result['status'])
 			 {
-			   $job_result = 'УСПЕХ задача выполнена '.date("Y-m-d h:i:s",$now);
-			   echo $job_result.'<br />****************************************************************************************************<br />';
-			   set_active_playlist($job['playlist_id'],1,"Y");
-			   break;
-			 }
-			 case 'FAIL':
-			 {
-			   $job_result = 'ОШИБКА задача НЕ выполнена '.date("Y-m-d h:i:s",$now).'<br />'.$result['description'] ;
-			   echo $job_result.'<br />****************************************************************************************************<br />';
-			   set_active_playlist(1,1,"Y");
-			   break;
-			 }
-	     }       /**/
+				 case 'OK':
+				 {
+				   $job_result = 'УСПЕХ задача выполнена '.date("Y-m-d h:i:s",$now);
+				   echo $job_result.'<br />****************************************************************************************************<br />';
+				   set_active_playlist($job['playlist_id'],1,"Y");
+				   break;
+				 }
+				 case 'FAIL':
+				 {
+				   $job_result = 'ОШИБКА задача НЕ выполнена '.date("Y-m-d h:i:s",$now).'<br />'.$result['description'] ;
+				   echo $job_result.'<br />****************************************************************************************************<br />';
+				   set_active_playlist(1,1,"Y");
+				   break;
+				 }
+		     }       /**/
 
-	   $repeat_weekly=$job['repeat_weekly'];
+		   $repeat_weekly=$job['repeat_weekly'];
 
-	   $playlist_id=intval($job['playlist_id']);
-	   if ($playlist_id<=0){echo '<span style="color:red">ОШИБКА: неверный номер плейлиста ('.$playlist_id.')</span><br /><br />';continue;}
+		   $playlist_id=intval($job['playlist_id']);
+		   if ($playlist_id<=0){echo '<span style="color:red">ОШИБКА: неверный номер плейлиста ('.$playlist_id.')</span><br /><br />';continue;}
 
-	   $playlist_data=get_playlist($playlist_id);
-	   if (!is_array($playlist_data) or empty($playlist_data)){echo '<span style="color:red">ОШИБКА: плейлист ('.$playlist_id.') не найден</span><br /><br />';continue;}
-	   $playlist_static=$playlist_data['static'];
+		   $playlist_data=get_playlist($playlist_id);
+		   if (!is_array($playlist_data) or empty($playlist_data)){echo '<span style="color:red">ОШИБКА: плейлист ('.$playlist_id.') не найден</span><br /><br />';continue;}
+		   $playlist_static=$playlist_data['static'];
 
-	   echo 'Начинаю обрабатывать задачу - плейлист № '.$playlist_id.' '.$playlist_data['name'].'<br /><br />';
+		   echo 'Начинаю обрабатывать задачу - плейлист № '.$playlist_id.' '.$playlist_data['name'].'<br /><br />';
 
-	   if ($playlist_static=="Y")
-	   {
-	     echo 'Тип: <b>Статический плейлист</b><br />';
-	    // echo 'Устанавливаю как активный';	     //set_active_playlist($playlist_id,1,"Y");
-	     if ($repeat_weekly=="Y")
-	     {	        echo "<b>АВТОПОВТОР ЧЕРЕЗ НЕДЕЛЮ</b><br /><br />";
-	        echo "Добавляю работу в расписание<br /><br />";
-	     	$new_timestamp =strtotime("+1 week",$time);
-	     	echo "Время следующего исполнения задачи =".$new_timestamp." ".timestamp_to_date($new_timestamp)."<br />";
-	     	$ca_result = cron_add_job($playlist_id,$new_timestamp,$repeat_weekly);
-	     	if (!$ca_result) {echo 'Не удалось сохранить задачу<br />';}	     }	   }
-	   else
-	   {	     echo 'Тип: <b>Динамический плейлист</b><br />';
-	     echo 'Перегенерирую плейлист';
-	     $result = regenerate_playlist($playlist_id);	    // echo 'Устанавливаю как активный';
-	     //set_active_playlist($playlist_id,1,"Y");
-	     if ($repeat_weekly=="Y")
-	     {
-	        echo "<b>АВТОПОВТОР ЧЕРЕЗ НЕДЕЛЮ</b><br /><br />";
-	        echo "Добавляю работу в расписание<br /><br />";
-	     	$new_timestamp =strtotime("+1 week",$time);
-	     	echo "Время следующего исполнения задачи =".$new_timestamp." ".timestamp_to_date($new_timestamp)."<br />";
-	     	$ca_result = cron_add_job($playlist_id,$new_timestamp,$repeat_weekly);
-	     	if (!$ca_result) {echo 'Не удалось сохранить задачу<br />';}
-	     }
-	   }
+		   if ($playlist_static=="Y")
+		   {
+		     echo 'Тип: <b>Статический плейлист</b><br />';
+		    // echo 'Устанавливаю как активный';		     //set_active_playlist($playlist_id,1,"Y");
+		     if ($repeat_weekly=="Y")
+		     {		        echo "<b>АВТОПОВТОР ЧЕРЕЗ НЕДЕЛЮ</b><br /><br />";
+		        echo "Добавляю работу в расписание<br /><br />";
+		     	$new_timestamp =strtotime("+1 week",$time);
+		     	echo "Время следующего исполнения задачи =".$new_timestamp." ".timestamp_to_date($new_timestamp)."<br />";
+		     	$ca_result = cron_add_job($playlist_id,$new_timestamp,$repeat_weekly);
+		     	if (!$ca_result) {echo 'Не удалось сохранить задачу<br />';}		     }		   }
+		   else
+		   {		     echo 'Тип: <b>Динамический плейлист</b><br />';
+		     echo 'Перегенерирую плейлист';
+		     $result = regenerate_playlist($playlist_id);		    // echo 'Устанавливаю как активный';
+		     //set_active_playlist($playlist_id,1,"Y");
+		     if ($repeat_weekly=="Y")
+		     {
+		        echo "<b>АВТОПОВТОР ЧЕРЕЗ НЕДЕЛЮ</b><br /><br />";
+		        echo "Добавляю работу в расписание<br /><br />";
+		     	$new_timestamp =strtotime("+1 week",$time);
+		     	echo "Время следующего исполнения задачи =".$new_timestamp." ".timestamp_to_date($new_timestamp)."<br />";
+		     	$ca_result = cron_add_job($playlist_id,$new_timestamp,$repeat_weekly);
+		     	if (!$ca_result) {echo 'Не удалось сохранить задачу<br />';}
+		     }
+		   }
 
 
-       cron_update_job($job['id'],$job_result,"Y");
-  	}
-  	else
-  	{	 echo '<span style="color:orange">задача НЕ требует выполнения (уже выполнена)</span><br /><br />';
-  	}
+	       cron_update_job($job['id'],$job_result,"Y");
+	  	}
+	  	else
+	  	{		 echo '<span style="color:orange">задача НЕ требует выполнения (уже выполнена)</span><br /><br />';
+	  	}
 
-  	$last_job = $job;
- }
- else
- { echo '<span style="color:red">задача НЕ требует выполнения (по времени)</span><br /><br />';
- }
+	  	$last_job = $job;
+	 }
+	 else
+	 {	 echo '<span style="color:red">задача НЕ требует выполнения (по времени)</span><br /><br />';
+	 }
 
 }
 

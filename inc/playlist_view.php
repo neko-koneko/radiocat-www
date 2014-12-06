@@ -1018,7 +1018,7 @@ function get_print_final_playlist_block($final_playlist,$playlist_data){    glo
 
     $s .=  '<div class="fleft w100 pad10"></div>';
 
-	$s.= get_print_playlist($final_playlist);
+	$s.= get_print_playlist($final_playlist,true);
 
     $s .=  '<input type="hidden" id="playlist_static_flag" value="'.$playlist_static.'">';
 
