@@ -119,7 +119,7 @@ function playlist_model_edit_playlist(){	global $main_request_array;
 
    print_playlist_view('edit',$playlist_data);}
 
-function generate_dynamic_playlist($playlist_data,$view_mode=null){	global $main_request_array;
+function generate_dynamic_playlist($playlist_data,$view_mode=null,$show_playlist=true){	global $main_request_array;
 
 	//echo "WM=".$view_mode;
 
@@ -143,7 +143,8 @@ function generate_dynamic_playlist($playlist_data,$view_mode=null){	global $mai
 	$id = 1;
 	$final_playlist = array();
 
-
+    $global_count_priority = false;
+    $global_maxtracks_priority = false;
     if($rules['special']['common']['count_priority']=="Y")
     {     	$global_count_priority = true;
     }
@@ -270,7 +271,7 @@ function generate_dynamic_playlist($playlist_data,$view_mode=null){	global $mai
 
 		  	    if ($tracks_count>0)
 		  	     {
-		  	        $s .= get_print_playlist($playlist);
+		  	        if($show_playlist) {$s .= get_print_playlist($playlist);}
 		            $final_playlist= array_merge($final_playlist,$playlist);
 	             }
 

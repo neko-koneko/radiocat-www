@@ -17,11 +17,14 @@ if (reconnect_db() == false)
 	echo "ERROR: ".mysqli_error($mysqli_connection); die;
 }
 
+if ($_GET['debug']=='1'){$debug=true;}else{$debug=false;}
+
 echo '<h1>Загрузка работ CRON</h1> <br />';
 $cron_jobs = cron_get_jobs();
 if (empty($cron_jobs)) {echo 'Активных задач не найдено<br />выполнено без ошибок'; die();}
 
-print_r ($cron_jobs);
+if ($debug){ print_r ($cron_jobs); }
+echo '<h2>Итого задач: '.count($cron_jobs).'</h2>';
 
 echo '<h1>Загрузка конфигурации</h1> <br />';
 
@@ -31,7 +34,8 @@ $raw_db_config=config_get_all_config();
 foreach ($raw_db_config as $config_item)
 { $db_config[$config_item['name']] = $config_item['value'];}
 
-print_r ($db_config);
+if (!$db_config){echo 'Конфигурация отсутствует, продолжаю с параметрами по умолчанию</br>';}
+if ($debug){print_r ($db_config);}
 
 $last_job = array();
 foreach ($cron_jobs as $job)
@@ -44,32 +48,14 @@ foreach ($cron_jobs as $job)
 	 echo '<h1>ЗАДАЧА '.$job['id'].'</h1>';
 	 echo '<br />time for task is '.$time.' '.date("Y-m-d h:i:s",$time).' now is '.$now.' '.date("Y-m-d h:i:s",$now).'<br />';
 	 echo 'playlist_id='.$job['playlist_id']."<br /><br />";
+     //debug
+     if (($debug == true) && ($job['id']=='1')){$job['done']='N';}
 
-	 if ($time<$now)
+	 if ( $time < $now )
 	 {
-		if ($job['done']=='N')
+		if ( $job['done']=='N' )
 		{
-		 echo '<span style="color:green">задача требует выполнения</span><br /><br />';		 //regenerate_playlist($playlist_id);
-
-			/* $result = regenerate_playlist($job['playlist_id']);
-
-			 switch ($result['status'])
-			 {
-				 case 'OK':
-				 {
-				   $job_result = 'УСПЕХ задача выполнена '.date("Y-m-d h:i:s",$now);
-				   echo $job_result.'<br />****************************************************************************************************<br />';
-				   set_active_playlist($job['playlist_id'],1,"Y");
-				   break;
-				 }
-				 case 'FAIL':
-				 {
-				   $job_result = 'ОШИБКА задача НЕ выполнена '.date("Y-m-d h:i:s",$now).'<br />'.$result['description'] ;
-				   echo $job_result.'<br />****************************************************************************************************<br />';
-				   set_active_playlist(1,1,"Y");
-				   break;
-				 }
-		     }       /**/
+		 echo '<span style="color:green">задача требует выполнения</span><br /><br />';
 
 		   $repeat_weekly=$job['repeat_weekly'];
 
@@ -92,11 +78,15 @@ foreach ($cron_jobs as $job)
 		     	$new_timestamp =strtotime("+1 week",$time);
 		     	echo "Время следующего исполнения задачи =".$new_timestamp." ".timestamp_to_date($new_timestamp)."<br />";
 		     	$ca_result = cron_add_job($playlist_id,$new_timestamp,$repeat_weekly);
-		     	if (!$ca_result) {echo 'Не удалось сохранить задачу<br />';}		     }		   }
+		     	if (!$ca_result) {echo 'Не удалось добавить задачу<br />';}		     }		   }
 		   else
 		   {		     echo 'Тип: <b>Динамический плейлист</b><br />';
 		     echo 'Перегенерирую плейлист';
-		     $result = regenerate_playlist($playlist_id);		    // echo 'Устанавливаю как активный';
+		     $tstart = microtime(true);
+		     $result = regenerate_playlist($playlist_id);
+		     $tstop = microtime(true);
+		     $tdiff = $tstop - $tstart;
+		     echo 'ПОТРАЧЕНО ВРЕМЕНИ НА ГЕНЕРАЦИЮ: '.$tdiff.' секунд<br/>';		    // echo 'Устанавливаю как активный';
 		     //set_active_playlist($playlist_id,1,"Y");
 		     if ($repeat_weekly=="Y")
 		     {
@@ -105,7 +95,7 @@ foreach ($cron_jobs as $job)
 		     	$new_timestamp =strtotime("+1 week",$time);
 		     	echo "Время следующего исполнения задачи =".$new_timestamp." ".timestamp_to_date($new_timestamp)."<br />";
 		     	$ca_result = cron_add_job($playlist_id,$new_timestamp,$repeat_weekly);
-		     	if (!$ca_result) {echo 'Не удалось сохранить задачу<br />';}
+		     	if (!$ca_result) {echo 'Не удалось добавить задачу<br />';}
 		     }
 		   }
 
@@ -134,29 +124,29 @@ foreach ($cron_jobs as $job)
 
 	 echo "Сейчас играет плейлист № ".$np_playlist_id."<br />";
 
-	 echo 'Устанавливаю активный плейлист '.$playlist_id."<br />";
-
 	 if ($np_playlist_id == $playlist_id)
 	 {	  echo " этот плейлист уже играет — не требуется смена плейлиста";
 	 // set_active_playlist($last_job_id,0,"N");
 	 }
 	 else
 	 {
-	  echo " готово";
+ 	  echo 'Устанавливаю активный плейлист '.$playlist_id."<br />";
 	  set_active_playlist($playlist_id,1,"Y");
 	  }
    }
    else
    {   	echo "Переключение плейлиста не требуется";   }
 
- die();
-
-
+echo "<br/>готово</br>";
+echo "*******************************************************************************************************";
+die();
 
 
 function regenerate_playlist($playlist_id)
 {
  global $db_config;
+
+ $tstart = microtime(true);
  $result = array();
  $result['status'] = 'FAIL';
 
@@ -187,158 +177,13 @@ function regenerate_playlist($playlist_id)
 
 
  $final_playlist = array();
- /*$ruleset = array();
- $track_stats = array(); $i=0;
- foreach($xml->rule as $rule)
- {
-        $attr = $rule->attributes();
 
-        $data = array();
-        foreach ($attr as $a => $b)
-        {           $data[$a] = $b;        }
-        $id = $data['id'];
-
-        $max_tracks_count = $data['max_tracks_count'];
-
-        $search_result = get_tracks_by_filter($data);
-		$tracks_count = count($search_result);
-		$max_tracks_count = intval($max_tracks_count);
-
-        $track_stats[$i] = $data;
-        $track_stats[$i]['tracks_count'] = $tracks_count;
-
-        $i++;
- } /**/
-
- $final_playlist_data = generate_dynamic_playlist($playlist_data,'nofilterform');
+ $final_playlist_data = generate_dynamic_playlist($playlist_data,'nofilterform',false);
 	    $final_playlist =  $final_playlist_data['data'];
 	    echo $final_playlist_data['view'];
 
+ echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
- /*echo 'Шаг 2 - Анализ результатов<br /><br />';
- $playlist_total_required_track_count =0;
- $playlist_total_found_track_count =0;
- $deficite_flag = false;
- foreach ($track_stats as $rule_id => $track_data)
- {
-  if ($track_data['tracks_count']<$track_data['max_tracks_count']){$deficite_flag=true;}
-  $playlist_total_required_track_count += ($track_data['max_tracks_count']==0)?$track_data['tracks_count']:$track_data['max_tracks_count'];
-  $playlist_total_found_track_count += $track_data['tracks_count'];
- }
-
- echo 'Итого требуется треков: '.$playlist_total_required_track_count.'<br /> Итого найдено треков: '.$playlist_total_found_track_count.'<br />';
-
- if ($playlist_total_required_track_count > $playlist_total_found_track_count)
- { 	// все фильтры находят меньше чем нужно - аварийный плейлист
-            $default_playlist = get_playlist(1);
-			echo 'Все Фильтры: не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-            $result['status'] = 'FAIL';
-            $result['description'] = 'Все Фильтры: не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-            return $result;
- }
- else
- {
-  	// все фильтры находят достаточное число треков, но при этом не ясно, какой из фильтров хуёвничает
-
-      if ($deficite_flag) // есть плохой фильтр
-      {       echo 'Как минимум один из фильтров не получил нужное число треков - повторяю поиск без жёсткого задания числа треков - ожидается найти '.$playlist_total_found_track_count.' треков<br />';
-          $final_playlist = array();
-	      foreach ($track_stats as $rule_id => $track_data)
-	      {
-//            $track_data['max_tracks_count']=0;
-            $search_result = get_tracks_by_filter($track_data);
-            $final_playlist= array_merge($final_playlist,$search_result);
-	      }
-
-      }
-      else    // все фильтры находят сколько нужно
-      {       echo 'Все фильтры нашли нужное число треков<br />';
-
-         foreach ($track_stats as $rule_id => $track_data)
-	      {
-            $search_result = get_tracks_by_filter($track_data);
-            $tracks_count = count($search_result);
-   		    $max_tracks_count = intval($max_tracks_count);
-            $count_priority = ($track_data['count_priority']=="Y");
-
-            if ($max_tracks_count>0)  // в правилах задано ограничение на число треков
-				{
-				  echo 'правило '.$rule_id.': в правилах задано ограничение на число треков <br />';
-			 	  $playlist = array();
-
-						 if	($max_tracks_count<$tracks_count) // найдено треков больше чем нужно
-						 {
-						      echo 'правило '.$rule_id.': найдено треков больше чем нужно<br />';
-
-						     if ($count_priority) // в правилах задано сортровать по приоритету счётчика числа проигрываний
-							 {
-							    echo 'правило '.$rule_id.': режим приоритета новых треков <b>ВКЛ</b><br />';
-							    $tmp = array(); $i=0;
-	                            foreach ($search_result as $trackdata)   // разобъём на блоки по числу проигрываний
-	                            {
-	                              $tmp[$trackdata['count']][$i] = $trackdata;
-	                              $i++;
-	                            }
-	                            ksort($tmp,SORT_NUMERIC);   // сортировка блоков
-
-	                            $tmp2 = array();$i=0;         // забиваем блоками стек, пока не будет достигнут нужный размер или более
-	                            foreach($tmp as $count_group)
-	                            {
-	                             foreach ($count_group as $trackdata)
-	                             {
-	                                $tmp2[$i] = $trackdata;
-	                                $i++;
-	                             }
-	                             if ($i>=$max_tracks_count) {break;}
-	                            }
-
-	                            shuffle($tmp2); // перемешать
-
-	                            for ($i=0; $i<$max_tracks_count; $i++) // обрезать под нужное число треков и записать в выходной массив
-	                            {
-	                               $playlist[$i] = $tmp2[$i];
-	                            }
-
-						     }
-					 	 	else
-						 	 {
-						 	    echo 'правило '.$rule_id.': режим приоритета новых треков <b>ВЫКЛ</b><br />';
-
-							    shuffle($search_result); // перемешать
-
-                                $i=0;
-	                            foreach ($search_result as $trackdata)
-	                            {
-	                               $playlist[$i] = $trackdata;
-	                               $i++;
-	                               if ($i==$max_tracks_count){break;}
-	                            }
-						 	 }
-         				 }
-                         else
-                         {
-                                echo 'правило '.$rule_id.': найдено треков Меньше или сколько требуется<br />';
-							    echo 'правило '.$rule_id.': режим приоритета новых треков <b>выключен</b><br />';
-
-	                         	$map = generate_random_map($tracks_count,$max_tracks_count); // забить массив (если треков меньше чем нужно, то можно забить с дублями, и, если это возможно, без повторов)
-						       	//print_r ($map);
-						     	foreach ($map as $map_data)
-						       	{
-						        	$playlist[] = $search_result[$map_data];
-						       	}
-                         }
-
-
-				}
-				else
-				{
-				echo 'правило '.$rule_id.': режим приоритета новых треков <b>выключен автоматически</b> — не указан предел отбора числа треков<br />';
-				$playlist = $search_result;
-				}
-          $final_playlist= array_merge($final_playlist,$playlist);
-	      }
-      }
- } /**/
 
  echo '<br />Шаг 3 - Сборка плейлиста<br /><br />';
 
@@ -368,28 +213,33 @@ function regenerate_playlist($playlist_id)
 
 	 echo '<h2>сгенерирован новый плейлист — '.$playlist_data['name'].' ('.$playlist_id.')</h2>';
 
+ echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
  echo '<br />Шаг 4 - Проверка на совпадение недавно сыгранных треков <br /><br />';
 
 
 $offset_hours = intval($db_config['offset_hours']);
-if($offset_hours<=0){$offset_hours=1;}
+if ($offset_hours<0 or $offset_hours>6){$offset_hours=1;}
 $max_forward_lookup_tracks_counter = intval($db_config['max_forward_lookup_tracks_counter']);
-if($max_forward_lookup_tracks_counter<=0){$max_forward_lookup_tracks_counter=20;}
+if ($max_forward_lookup_tracks_counter<0 or $max_forward_lookup_tracks_counter>60){$max_forward_lookup_tracks_counter=20;}
 $max_try_count = intval($db_config['max_try_count']);
-if($max_try_count<=0 or $max_try_count>10){$max_try_count=5;}
+if ($max_try_count<=0 or $max_try_count>10){$max_try_count=5;}
 
 echo '<b>настройки</b>: просматривать назад на '.$offset_hours.' часов, просматривать вперёд не более '.$max_forward_lookup_tracks_counter.' треков, макс. число попыток ',$max_try_count.'<br />';
 
 echo 'сыграны за последние '.$offset_hours.' часов <br />';
 
-$files_data = get_last_played_tracks_files($offset_hours);
-foreach ($files_data as $file_data)
-{ echo $file_data['id']." ";
- echo $file_data['file_id']." ";
- echo date ("d-m-Y H:i:s", datetime_to_timestamp($file_data['time']))." ";
- echo $file_data['filename']."<br /> ";}
+$last_played_files = get_last_played_tracks_files($offset_hours);
+if (empty($last_played_files)){ echo '<b>Нет данных</b><br />';}
 
+foreach ($last_played_files as $last_played_file)
+{ //echo $file_data['id']." ";
+ echo '<b>'.$last_played_file['file_id'].'</b> ';
+ echo date ("d-m-Y H:i:s", datetime_to_timestamp($last_played_file['time']))." ";
+ //echo '<b>'.$last_played_file['filename'].'</b>'
+ echo '<br />';}
+
+ echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
 //print_r($final_playlist);
 
@@ -397,32 +247,34 @@ $try_count=0;
 while ($try_count<$max_try_count)
 	{
 	 echo  'перетасовываю, попытка '.$try_count.'<br />';
+     $repeat_error_flag = false;
+      echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
      shuffle ($final_playlist);
 
-        $repeat_error_flag = false;
-		foreach ($files_data as $file_data)
-		{	     $played_file_id = $file_data['file_id'];
+     foreach ($last_played_files as $last_played_file)
+     {     	$last_played_files_ids[] = $last_played_file['id'];     }
 
-	     $tracks_counter=0;
-		     foreach ($final_playlist as $playlist_data)
+     $tracks_counter = 0;
+	 foreach ($final_playlist as $playlist_data)
 		     {			     $candidate_file_id = $playlist_data['id'];
 
-			     if ($candidate_file_id == $played_file_id)
+			     if (in_array($candidate_file_id,$last_played_files_ids))
 			     {			     	$repeat_error_flag =true;
-			     	echo 'неудача, '.$playlist_data['filename'].' [id='.$playlist_data['id'].'] , пробую снова<br />';
+			     	echo 'неудача, '.$playlist_data['filename'].' [id=<b>'.$playlist_data['id'].'</b>] , пробую снова<br />';
 			     	break 2;
 			     }
 
 			     $tracks_counter++;
 			     if ($tracks_counter == $max_forward_lookup_tracks_counter){break;}		     }
-		}
+
         if(!$repeat_error_flag)
         {         echo 'Успешно<br />'; break;        }
 
     $try_count++;
     if ($try_count==$max_try_count){ echo 'максимальное число попыток достигнуто<br />'; break;}
     }
+     echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
     $temp_playlist_first_block = Array();
     $temp_playlist_last_block = Array();
@@ -451,8 +303,9 @@ while ($try_count<$max_try_count)
         $final_playlist = array_merge($temp_playlist_first_block,$temp_playlist_last_block);
     }
 
+     echo '<span style="color:red">main processing ends. TIME='.(microtime(true)-$tstart).'</span></br>';
 
-	 print_playlist($final_playlist);
+	// print_playlist($final_playlist);
 
 // return;
      /*echo 'final =<br />';
@@ -463,6 +316,7 @@ while ($try_count<$max_try_count)
     // edit_playlist($playlist_id,$playlist_name,$playlist_static,$playlist_rules);
 
      clear_playlist_tracks($playlist_id);
+     echo '<span style="color:red">tracks deleted TIME='.(microtime(true)-$tstart).'</span></br>';
 
      $track_number = 1;
      foreach ($final_playlist as $playlist_item)
@@ -472,116 +326,13 @@ while ($try_count<$max_try_count)
 
       $track_number ++;
      }
+     echo '<span style="color:red">'.$track_number.' tracks added TIME='.(microtime(true)-$tstart).'</span></br>';
+
+
+  echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
  $result['status'] = 'OK';
 return $result;
 }
-
-
-
-/*
-
-if ($tracks_count>0)
-			{
-				if ($max_tracks_count>0)
-				{
-
-					if ($max_tracks_count<=$tracks_count)
-					{
-					   echo 'Отобрано: '.$max_tracks_count.' треков (из '.$tracks_count.') ';
-					   echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).'</span> ';
-					   echo '<span class="maroon"> / '.sec_to_hour_min_sec($pl_time_all).'</span> ';
-                       echo '<span class="message_ok">Без повторов</span><br />';
-					}
-					else
-
-					{
-					   echo 'Отобрано: '.$max_tracks_count.' треков (из '.$tracks_count.') ';
-					   echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).'</span> ';
-					   echo '<span class="maroon"> / '.sec_to_hour_min_sec($pl_time_all).'</span> ';
-					   echo '<span class="message_warn">С повторами</span><br />';
-					   $final_playlist_repeated_track = true;
-
-                     /*  $required_tracks =  $max_tracks_count - $tracks_count;
-
-					   echo 'Включаю адаптивный фильтр — пытаюсь добрать '.$required_tracks.' трэков с менее жёсткими условиями';
-
-					   $adaptive_result = playlist_get_adaptive_tracks_by_filter($data);
-
-                       $adaptive_$tracks_count = count($adaptive_result);
-
-                       if ($adaptive_$tracks_count>0)
-                       {
-
-                       }
-                       else // total FAIL - адаптивный фильтр не справился с задачей
-                       {
-					    $default_playlist = get_playlist(1);
-						echo 'Фильтр (включён адаптивный режим): не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-			            $result['status'] = 'FAIL';
-			            $result['description'] = 'Фильтр (включён адаптивный режим): не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-			            return $result;
-			            }
-					}
-
-                 $playlist = $search_result;
-			 	/* $playlist = array();
- 			     $map = generate_random_map($tracks_count,$max_tracks_count);
-			       //print_r ($map);
-
-			     foreach ($map as $map_data)
-			       {
-			        $playlist[] = $search_result[$map_data];
-			       }
-                 $pl_time = 0;
-
-
-                 foreach ($playlist as $pl_element)
-                   {
-                     $pl_time += $pl_element['length'];
-                   }
-
-
-				}
-				else
-				{
-				echo 'Отобрано: '.$tracks_count.' треков ';
- 			    echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time_all).'</span> ';
-				$playlist = $search_result;
-				}
-			}
-			else
-			{
-			/*$default_playlist = get_playlist(1);
-			echo 'Фильтр: не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-            $result['status'] = 'FAIL';
-            $result['description'] = 'Фильтр: не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-            return $result;
-			}
-
-*/
-
-
-		/*$pl_time_all = 0;
-                 foreach ($search_result as $pl_element)
-                   {
-                     $pl_time_all += $pl_element['length'];
-                   }            /**/
-
-/*
-
-   if ($tracks_count>0)
-	  	     {  print_playlist($playlist);
-	            $final_playlist= array_merge($final_playlist,$playlist);
-             }
-
-        echo '</div>';
-*/
-
-/*$default_playlist = get_playlist(1);
-			echo 'Фильтр: не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-            $result['status'] = 'FAIL';
-            $result['description'] = 'Фильтр: не могу подобрать ни одного трека — переключаюсь на плейлист по умолчанию ('.$default_playlist['name'].')';
-            return $result;  /**/
 
 ?>

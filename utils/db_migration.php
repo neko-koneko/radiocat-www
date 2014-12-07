@@ -34,20 +34,33 @@ foreach ($playlists as $playlist_data)
 	echo '<h2>playlist id='.$playlist_id.' name='.$playlist_name.'</h2>';
     $xml = simplexml_load_string($playlist_rules);
 	if (!$xml)
-	{ echo 'error - cannot load xml<br/> rules='.$playlist_rules;
-	}
-
-	foreach($xml->rule as $rule)
 	{
-		$attr = $rule->attributes();
-		/* echo '<br /><br />--';
-		print_r ($attr); echo '--<br />'; /**/
-		$data = array();
-		foreach ($attr as $a => $b)
-		{ $data[$a] = (string)$b; }
+		echo 'error - cannot load xml<br/> rules='.$playlist_rules.'<br/>';
+		$re = false;
 	}
-	$playlist_rules = json_encode($data);
-    echo $playlist_rules.'<br/>';
+	else
+	{
+	    $i=1;
+		foreach($xml->rule as $rule)
+		{
+			$attr = $rule->attributes();
+			/* echo '<br /><br />--';
+			print_r ($attr); echo '--<br />'; /**/
+			$data = array();
+			foreach ($attr as $a => $b)
+			{
+				if($a=='id'){continue;}
+				$data[$a] = (string)$b;
+			}
+			$new_rules[$i]=$data;
+			$i++;
+		}
+
+
+		$playlist_rules = json_encode($new_rules);
+
+    echo 'new rules='.$playlist_rules.'<br/>';
+    }
     $re = edit_playlist($playlist_id,$playlist_name,$playlist_static,$playlist_rules);
 
     if (!$re){echo 'cannot save playlist!<br/>';}else{echo 'Converted successfully!';}

@@ -621,7 +621,7 @@ global $mysqli_connection;
   WHERE `time` >= STR_TO_DATE('$time_str', '%Y-%m-%d %H:%i:%s')
   ";
 
-// echo $qry;
+ // echo $qry;
 
  $query = mysqli_query($mysqli_connection,$qry);
  if(!$query) {return $result;}
@@ -670,13 +670,13 @@ function cron_update_job($job_id,$job_result,$job_done="Y")
  $job_result = mysqli_real_escape_string($mysqli_connection, $job_result);
  $job_done = $job_done=="N"?"N":"Y";
 
- $query = mysqli_query($mysqli_connection,
- "UPDATE `cron_jobs`
+ $qry = "UPDATE `cron_jobs`
   SET `done` = '".$job_done."',
       `result` = '".$job_result."'
   WHERE `id` = '".$job_id."'
-  "
-  );
+  ";
+
+ $query = mysqli_query($mysqli_connection,$qry);
 
  if(!$query) {return false;}
  return true;
