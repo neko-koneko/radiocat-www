@@ -12,6 +12,8 @@ include_once("inc/tagreader.php");
 include_once("inc/playlist.php");
 include_once("inc/time_lib.php");
 
+$tstart=microtime(true);
+
 if (reconnect_db() == false)
 {
 	echo "ERROR: ".mysqli_error($mysqli_connection); die;
@@ -35,9 +37,12 @@ foreach ($raw_db_config as $config_item)
 { $db_config[$config_item['name']] = $config_item['value'];}
 
 if (!$db_config){echo 'Конфигурация отсутствует, продолжаю с параметрами по умолчанию</br>';}
-if ($debug){print_r ($db_config);}
+if ($debug){print_r ($db_config);echo '<br/>';}
 
 $last_job = array();
+
+echo '<span style="color:#48f">TIME='.(microtime(true)-$tstart).'</span></br>';
+
 foreach ($cron_jobs as $job)
 {
 	//$time = $job['time'];	 $time_str = $job['time'];
@@ -82,11 +87,11 @@ foreach ($cron_jobs as $job)
 		   else
 		   {		     echo 'Тип: <b>Динамический плейлист</b><br />';
 		     echo 'Перегенерирую плейлист';
-		     $tstart = microtime(true);
+		     $tstart2 = microtime(true);
 		     $result = regenerate_playlist($playlist_id);
-		     $tstop = microtime(true);
-		     $tdiff = $tstop - $tstart;
-		     echo 'ПОТРАЧЕНО ВРЕМЕНИ НА ГЕНЕРАЦИЮ: '.$tdiff.' секунд<br/>';		    // echo 'Устанавливаю как активный';
+		     $tstop2 = microtime(true);
+		     $tdiff2 = $tstop2 - $tstart2;
+		     echo 'ПОТРАЧЕНО ВРЕМЕНИ НА ГЕНЕРАЦИЮ: '.$tdiff2.' секунд<br/>';		    // echo 'Устанавливаю как активный';
 		     //set_active_playlist($playlist_id,1,"Y");
 		     if ($repeat_weekly=="Y")
 		     {
@@ -101,31 +106,37 @@ foreach ($cron_jobs as $job)
 
 
 	       cron_update_job($job['id'],$job_result,"Y");
+	       if(($debug == false) || ($job['id']!='1')){
+	       $last_job = $job;
+	       }
 	  	}
 	  	else
 	  	{		 echo '<span style="color:orange">задача НЕ требует выполнения (уже выполнена)</span><br /><br />';
 	  	}
 
-	  	$last_job = $job;
+
 	 }
 	 else
 	 {	 echo '<span style="color:red">задача НЕ требует выполнения (по времени)</span><br /><br />';
 	 }
-
+ echo '<span style="color:#48f">TIME='.(microtime(true)-$tstart).'</span></br>';
 }
-
+ echo '<span style="color:#48f">job processing ends. TIME='.(microtime(true)-$tstart).'</span></br>';
  echo '<br /><br />';
  $playlist_id=intval($last_job['playlist_id']);
 
+ $np_data = get_active_playlist();
+ $np_playlist_id = $np_data['current_playlist_id'];
+
+ echo "Сейчас играет плейлист № ".$np_playlist_id.", требуется установить: ".$playlist_id." <br />";
+
+ echo '<span style="color:#48f">TIME='.(microtime(true)-$tstart).'</span></br>';
+
  if (!empty($last_job))
    {
-	 $np_data = get_active_playlist();
-	 $np_playlist_id = $np_data['current_playlist_id'];
-
-	 echo "Сейчас играет плейлист № ".$np_playlist_id."<br />";
 
 	 if ($np_playlist_id == $playlist_id)
-	 {	  echo " этот плейлист уже играет — не требуется смена плейлиста";
+	 {	  echo "уже играет — не требуется смена плейлиста";
 	 // set_active_playlist($last_job_id,0,"N");
 	 }
 	 else
@@ -138,6 +149,8 @@ foreach ($cron_jobs as $job)
    {   	echo "Переключение плейлиста не требуется";   }
 
 echo "<br/>готово</br>";
+echo "*******************************************************************************************************<br>";
+echo '<span style="color:#48f">TOTAL EXECUTION TIME='.(microtime(true)-$tstart).'</span></br>';
 echo "*******************************************************************************************************";
 die();
 
