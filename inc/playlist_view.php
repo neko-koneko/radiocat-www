@@ -2,10 +2,24 @@
 
 function  print_playlist($playlist,$include_file_id_inputs=false){	echo get_print_playlist($playlist,$include_file_id_inputs);}
 
-function  get_print_playlist($playlist,$include_file_id_inputs=false)
+function  get_print_playlist($playlist,$include_file_id_inputs=false,$showhidebutton=false,$rule_id=0)
 {
 	$s='';
-	$s .=  '<div class="fleft w100">';
+
+	if ($showhidebutton){		$s.= '<div class="">
+                  <div class="fleft w100"><div class="fleft w100 job_plate_50 asc pointer movedownonsmall movedownonmedium" onclick="playlist_toggle_filter_result('.$rule_id.');"><table class="">
+			            <table class="">
+			            <tbody><tr class="pointer pad10">
+			              <td class="job_time pad10">[<b><span id="ptfr_char_'.$rule_id.'">&#8681;</span></b>]</td>
+			              <td class="job_name pad10" id="ptfr_text_'.$rule_id.'">Показать результат работы фильтра</td>
+			            </tr>
+			            </tbody></table>
+			            </div></div>
+			 </div>';	}
+
+	$s .=  '<div id="playlist_tracklist_block_'.$rule_id.'" class="fleft w100" ';
+	if ($showhidebutton){		$s.= ' style="display:none;" ';	}
+	$s .='>';
 
 		  $s .=  '<table class="media_table">';
 		    $s .=  '<tr>
@@ -784,7 +798,7 @@ echo '<div id="helper"></div>';
 
 		echo '<div id="filter_form"  class="fleft w100" >';
 
-		$final_playlist_data = generate_dynamic_playlist($playlist_data);
+		$final_playlist_data = generate_dynamic_playlist($playlist_data,false,'showhidden');
 	    $final_playlist =  $final_playlist_data['data'];
 	    echo $final_playlist_data['view'];
 

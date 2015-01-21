@@ -122,8 +122,10 @@ echo '<div class="calendar_nav">
 
 
         $filter_empty = true;
-        foreach ($data as $value) {if ($value!=''){$filter_empty = false; break;}  }
-        if ($id!=1 and $filter_empty) {continue;}
+        foreach ($data as $value) {
+        	if ($value!=''){$filter_empty = false; break;}
+        }
+
 
 
   	    $s = '';
@@ -256,145 +258,150 @@ echo '<div class="calendar_nav">
 	echo '</div>';
 
     echo '<div class="fleft w100 pad10"></div>';
+    echo '<input type="hidden" name="show_all" value="Y">';
+
+    if ($_POST['show_all']!='Y'){
+
+    		echo '<div class="fleft w100">';
+   			echo '<h1 class="w100 tacentr">Для отображения всей медиатеки нажмите Отобрать при пустом фильтре</h1>';
+    		echo '</div>';
+
+    }else{
+
+			echo '<div class="fleft w100">';
+
+				  echo '<table  class="media_table">';
+				    echo '<tr>
+				           <th>';
+		            echo '<input type="checkbox" id="cb_media_row_select_all" onclick="table_edit_select_all_rows(event,this,\'media_row\');">';
+		            echo '</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/id/'.$new_order_type.'\' ; submit_form(\'form1\');">id</th>
+				           <th></th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/count/'.$new_order_type.'\'; submit_form(\'form1\');">Cч</th>';
+
+				   			if ($config['media']['show_file_path']==true)
+				   			{
+				           	echo '<th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/filename/'.$new_order_type.'\'; submit_form(\'form1\');">Путь к файлу</th>';
+				    		}
+
+				    echo  '<th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/artist/'.$new_order_type.'\'; submit_form(\'form1\');">Исполнитель</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/title/'.$new_order_type.'\'; submit_form(\'form1\');">Название трека</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/year/'.$new_order_type.'\'; submit_form(\'form1\');">Год выпуска</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/genre/'.$new_order_type.'\'; submit_form(\'form1\');">Жанр</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/size/'.$new_order_type.'\'; submit_form(\'form1\');">Размер</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/length/'.$new_order_type.'\'; submit_form(\'form1\');">Длительность</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/bpm/'.$new_order_type.'\'; submit_form(\'form1\');">bpm</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/camelot_ton/'.$new_order_type.'\'; submit_form(\'form1\');">Тон</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/rating/'.$new_order_type.'\'; submit_form(\'form1\');">Рейтинг</th>
+				           <th >Комментарий</th>
+				           <th >Дата модификации</th>
+				           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/add_date/'.$new_order_type.'\'; submit_form(\'form1\');">Дата добавления</th>
+				           <th colspan=3>ОП</th>
+				         </tr>';      /**/
+
+					$all_tracks = get_tracks_by_filter($data,$order_by,$order_type);
+
+		            echo '<div class="fleft w100 pad5 filter_result_info">';
+		             $pl_time = 0;
+		             foreach ($all_tracks as $data)
+		               {
+		                 $pl_time += $data['length'];
+		               }
+				     echo 'Отобрано: '.count($all_tracks).' треков ';
+				     echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).' ('.$pl_time.') сек </span> ';
+
+		     		echo '</div>';
+
+		            $i=0;
+					foreach  ($all_tracks as $data)
+					{
+				        echo '<tr id="media_row_'.$i.'" name="media_row">';
+
+					    echo '<td>';
+		   			    echo '<input type="hidden" value="'.$data['id'].'" id="file_id_media_row_'.$i.'">';
+
+		                echo '<input type="checkbox" id="cb_media_row_'.$i.'" name="cb_media_row" onclick="table_edit_select_row(event,this,\'media_row\');" >';
+				   	    echo '</td><td>';
+					    echo $data['id'];
+				   	    echo '</td><td>';
+
+		                echo '<div class="green_button pointer" onclick="
+		                      show_player();
+		                      table_edit_apply_select_row_playing(\'media_row_'.$i.'\', this,\'media_row\');
+		                      niftyplayer(\'niftyPlayer1\').loadAndPlay(\''.$base.'/media_proxy/'.$data['id'].'\')
+		                      ">
+
+		                   &#9658;
+
+		                   </div>';
+
+				   	    echo '</td><td>';
+				   	    echo $data['count'];
+				   	    echo '</td>';
+
+					   	if ($config['media']['show_file_path']==true)
+					   	{
+					   	    echo '<td >';
+			                //echo $config['media']['media_root_folder'];
+						    $relative_file_path = str_replace($config['media']['media_root_folder'],'',$data['filename']); // cut root media folder
+
+						    $path_components = explode('/',$relative_file_path);
+						    $path_components = array_filter($path_components,'strlen'); // get rid off empty components (i.e. leading '/')
+			                array_pop($path_components);   // remove filename
+			                array_shift($path_components); // remove first component of path as it is suppossed to be a folder inside root_media_folder
+			                $current_folder = implode('/',$path_components);
+
+						    echo $current_folder;
+
+					   	    echo '</td>';
+		                }
+				   	    echo '<td>';
+					    echo $data['artist'];
+				   	    echo '</td><td>';
+					    echo $data['title'];
+				   	    echo '</td><td>';
+				   	    echo $data['year'];
+				   	    echo '</td><td>';
+				   	    echo $data['genre'];
+				   	    echo '</td><td>';
+				        echo get_cute_file_size($data['size']);
+					    echo '</td><td>';
+					    echo sec_to_hour_min_sec($data['length']);
+					    echo '</td><td>';
+				/*	    echo $data['bitrate'];
+					    echo '</td><td>'; /**/
+				        echo $data['bpm'];
+					    echo '</td><td>';
+					    echo $data['camelot_ton'];
+					    echo '</td><td>';
+					    echo $data['rating'];
+					    echo '</td><td>';
+					    echo $data['comment'];
+					    echo '</td><td>';
+
+		                echo $data['date'];
+				       // echo date ("d-m-Y", filemtime($data['filename']));
+
+					    echo '</td><td>';
+					    echo date ("d-m-Y", datetime_to_timestamp($data['add_date']));
+					    echo '</td><td>';
+					    echo '<div onclick="media_library_add_to_cart('.$data['id'].',\'media_row\');" class="maroon pointer" name="media_row_add_to_cart_button">[p]</div>';
+					    echo '</td><td>';
+					    echo '<div onclick="media_library_edit('.$data['id'].',\'media_row\');" class="maroon pointer" name="media_row_edit_button">[e]</div>';
+					    echo '</td><td>';
+					    echo '<div onclick="media_library_update_from_file('.$data['id'].',\'media_row\');" class="maroon pointer" name="media_row_update_from_file_button">[r]</div>';
+					    echo '</td>';
 
 
-
-
-
-	echo '<div class="fleft w100">';
-
-		  echo '<table  class="media_table">';
-		    echo '<tr>
-		           <th>';
-            echo '<input type="checkbox" id="cb_media_row_select_all" onclick="table_edit_select_all_rows(event,this,\'media_row\');">';
-            echo '</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/id/'.$new_order_type.'\' ; submit_form(\'form1\');">id</th>
-		           <th></th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/count/'.$new_order_type.'\'; submit_form(\'form1\');">Cч</th>';
-
-		   			if ($config['media']['show_file_path']==true)
-		   			{
-		           	echo '<th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/filename/'.$new_order_type.'\'; submit_form(\'form1\');">Путь к файлу</th>';
-		    		}
-
-		    echo  '<th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/artist/'.$new_order_type.'\'; submit_form(\'form1\');">Исполнитель</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/title/'.$new_order_type.'\'; submit_form(\'form1\');">Название трека</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/year/'.$new_order_type.'\'; submit_form(\'form1\');">Год выпуска</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/genre/'.$new_order_type.'\'; submit_form(\'form1\');">Жанр</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/size/'.$new_order_type.'\'; submit_form(\'form1\');">Размер</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/length/'.$new_order_type.'\'; submit_form(\'form1\');">Длительность</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/bpm/'.$new_order_type.'\'; submit_form(\'form1\');">bpm</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/camelot_ton/'.$new_order_type.'\'; submit_form(\'form1\');">Тон</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/rating/'.$new_order_type.'\'; submit_form(\'form1\');">Рейтинг</th>
-		           <th >Комментарий</th>
-		           <th >Дата модификации</th>
-		           <th onclick=" document.getElementById(\'form1\').action=\''.$base.'/media_library/add_date/'.$new_order_type.'\'; submit_form(\'form1\');">Дата добавления</th>
-		           <th colspan=3>ОП</th>
-		         </tr>';      /**/
-
-
-
-			$all_tracks = get_tracks_by_filter($data,$order_by,$order_type);
-
-            echo '<div class="fleft w100 pad5 filter_result_info">';
-             $pl_time = 0;
-             foreach ($all_tracks as $data)
-               {
-                 $pl_time += $data['length'];
-               }
-		     echo 'Отобрано: '.count($all_tracks).' треков ';
-		     echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).' ('.$pl_time.') сек </span> ';
-
-     		echo '</div>';
-
-            $i=0;
-			foreach  ($all_tracks as $data)
-			{
-		        echo '<tr id="media_row_'.$i.'" name="media_row">';
-
-			    echo '<td>';
-   			    echo '<input type="hidden" value="'.$data['id'].'" id="file_id_media_row_'.$i.'">';
-
-                echo '<input type="checkbox" id="cb_media_row_'.$i.'" name="cb_media_row" onclick="table_edit_select_row(event,this,\'media_row\');" >';
-		   	    echo '</td><td>';
-			    echo $data['id'];
-		   	    echo '</td><td>';
-
-                echo '<div class="green_button pointer" onclick="
-                      show_player();
-                      table_edit_apply_select_row_playing(\'media_row_'.$i.'\', this,\'media_row\');
-                      niftyplayer(\'niftyPlayer1\').loadAndPlay(\''.$base.'/media_proxy/'.$data['id'].'\')
-                      ">
-
-                   &#9658;
-
-                   </div>';
-
-		   	    echo '</td><td>';
-		   	    echo $data['count'];
-		   	    echo '</td>';
-
-			   	if ($config['media']['show_file_path']==true)
-			   	{
-			   	    echo '<td >';
-	                //echo $config['media']['media_root_folder'];
-				    $relative_file_path = str_replace($config['media']['media_root_folder'],'',$data['filename']); // cut root media folder
-
-				    $path_components = explode('/',$relative_file_path);
-				    $path_components = array_filter($path_components,'strlen'); // get rid off empty components (i.e. leading '/')
-	                array_pop($path_components);   // remove filename
-	                array_shift($path_components); // remove first component of path as it is suppossed to be a folder inside root_media_folder
-	                $current_folder = implode('/',$path_components);
-
-				    echo $current_folder;
-
-			   	    echo '</td>';
-                }
-		   	    echo '<td>';
-			    echo $data['artist'];
-		   	    echo '</td><td>';
-			    echo $data['title'];
-		   	    echo '</td><td>';
-		   	    echo $data['year'];
-		   	    echo '</td><td>';
-		   	    echo $data['genre'];
-		   	    echo '</td><td>';
-		        echo get_cute_file_size($data['size']);
-			    echo '</td><td>';
-			    echo sec_to_hour_min_sec($data['length']);
-			    echo '</td><td>';
-		/*	    echo $data['bitrate'];
-			    echo '</td><td>'; /**/
-		        echo $data['bpm'];
-			    echo '</td><td>';
-			    echo $data['camelot_ton'];
-			    echo '</td><td>';
-			    echo $data['rating'];
-			    echo '</td><td>';
-			    echo $data['comment'];
-			    echo '</td><td>';
-
-                echo $data['date'];
-		       // echo date ("d-m-Y", filemtime($data['filename']));
-
-			    echo '</td><td>';
-			    echo date ("d-m-Y", datetime_to_timestamp($data['add_date']));
-			    echo '</td><td>';
-			    echo '<div onclick="media_library_add_to_cart('.$data['id'].',\'media_row\');" class="maroon pointer" name="media_row_add_to_cart_button">[p]</div>';
-			    echo '</td><td>';
-			    echo '<div onclick="media_library_edit('.$data['id'].',\'media_row\');" class="maroon pointer" name="media_row_edit_button">[e]</div>';
-			    echo '</td><td>';
-			    echo '<div onclick="media_library_update_from_file('.$data['id'].',\'media_row\');" class="maroon pointer" name="media_row_update_from_file_button">[r]</div>';
-			    echo '</td>';
-
-
-		    echo '</tr>';   /**/
-		    $i++;
-			}
-		  echo '</table>';
-	echo '</div>';
-
+				    echo '</tr>';   /**/
+				    $i++;
+					}
+				  echo '</table>';
+			echo '</div>';
+    }
 echo '</div>';
+
+echo '</form>';
 ?>
 </div>
     <!-- content end -->

@@ -119,7 +119,7 @@ function playlist_model_edit_playlist(){	global $main_request_array;
 
    print_playlist_view('edit',$playlist_data);}
 
-function generate_dynamic_playlist($playlist_data,$view_mode=null,$show_playlist=true){	global $main_request_array;
+function generate_dynamic_playlist($playlist_data,$view_mode=null,$show_playlist='showhidden'){	global $main_request_array;
 
 	//echo "WM=".$view_mode;
 
@@ -271,7 +271,15 @@ function generate_dynamic_playlist($playlist_data,$view_mode=null,$show_playlist
 
 		  	    if ($tracks_count>0)
 		  	     {
-		  	        if($show_playlist) {$s .= get_print_playlist($playlist);}
+
+		  	        switch($show_playlist) {		  	        	case 'show':			  	        	$s .= get_print_playlist($playlist);
+			  	        break;
+
+			  	        case 'showhidden':
+			  	        	$s .= get_print_playlist($playlist,false,true,$rule_id);
+			  	        break;
+		  	        }
+
 		            $final_playlist= array_merge($final_playlist,$playlist);
 	             }
 
