@@ -254,7 +254,6 @@ foreach ($last_played_files as $last_played_file)
 
  echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
-//print_r($final_playlist);
 
 $try_count=0;
 while ($try_count<$max_try_count)
@@ -264,9 +263,10 @@ while ($try_count<$max_try_count)
       echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
 
      shuffle ($final_playlist);
+	 if ($_GET['debug']=='1') { echo 'final playlisy:';print_r($final_playlist);echo'<br>';}
 
      foreach ($last_played_files as $last_played_file)
-     {     	$last_played_files_ids[] = $last_played_file['id'];     }
+     {     	$last_played_files_ids[] = $last_played_file['file_id'];     }
 
      $tracks_counter = 0;
 	 foreach ($final_playlist as $playlist_data)
@@ -274,8 +274,8 @@ while ($try_count<$max_try_count)
 
 			     if (in_array($candidate_file_id,$last_played_files_ids))
 			     {			     	$repeat_error_flag =true;
-			     	echo 'неудача, '.$playlist_data['filename'].' [id=<b>'.$playlist_data['id'].'</b>] , пробую снова<br />';
-			     	break 2;
+			     	echo '<br/>неудача, '.$playlist_data['filename'].' [id=<b>'.$playlist_data['id'].'</b>] , пробую снова<br />';
+			     	break;
 			     }
 
 			     $tracks_counter++;
@@ -287,14 +287,14 @@ while ($try_count<$max_try_count)
     $try_count++;
     if ($try_count==$max_try_count){ echo 'максимальное число попыток достигнуто<br />'; break;}
     }
-     echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span></br>';
+     echo '<span style="color:red">TIME='.(microtime(true)-$tstart).'</span><br>';
 
     $temp_playlist_first_block = Array();
     $temp_playlist_last_block = Array();
 
     if($repeat_error_flag)
     {
-        echo 'перемещаю сыгранные за  последние '.$offset_hours.' часов треки в конец плейлиста';
+        echo 'перемещаю сыгранные за  последние '.$offset_hours.' часов треки в конец плейлиста<br><br>';
 
         $played_files_id = array();		foreach ($files_data as $file_data)
 		{
@@ -318,6 +318,8 @@ while ($try_count<$max_try_count)
 
      echo '<span style="color:red">main processing ends. TIME='.(microtime(true)-$tstart).'</span></br>';
 
+	 echo '<br><b>ИТОГ:</b><br>';
+     if ($_GET['debug']=='1') { echo 'final playlisy:';print_r($final_playlist);echo'<br>';}
 	// print_playlist($final_playlist);
 
 // return;
