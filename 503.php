@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 header("Content-type: text/html; charset=UTF-8");
 header("Expires: Mon, 23 May 1995 02:00:00 GMT");

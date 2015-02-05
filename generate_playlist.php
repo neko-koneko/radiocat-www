@@ -22,7 +22,15 @@ if (reconnect_db() == false)
 if ($_GET['debug']=='1'){$debug=true;}else{$debug=false;}
 
 echo '<h1>Загрузка работ CRON</h1> <br />';
-$cron_jobs = cron_get_jobs();
+
+if($debug){
+	echo 'Режим отладки включён. Выгружаю все задачи<br />';
+	$cron_jobs = cron_get_jobs();
+}else{
+	echo 'Режим отладки отключён. Выгружаю только активные задачи<br />';
+	$cron_jobs = cron_get_active_jobs();
+}
+
 if (empty($cron_jobs)) {echo 'Активных задач не найдено<br />выполнено без ошибок'; die();}
 
 if ($debug){ print_r ($cron_jobs); }

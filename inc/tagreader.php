@@ -1,4 +1,4 @@
-<?
+<?php
 // From here: http://www.autistici.org/ermes/index.php?pag=1&post=15
 // and fixed here: http://www.barattalo.it
 // ------------------------------

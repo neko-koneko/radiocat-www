@@ -1,4 +1,4 @@
-<?
+<?php
 $mysqli_connection = false;
 // соединяемся с базой на основном поддомене
 function reconnect_db()

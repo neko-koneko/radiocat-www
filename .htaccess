@@ -1,4 +1,3 @@
-php_value register_globals "off"
 AddType application/pdf .pdf
 RewriteEngine on
 RewriteBase /radio

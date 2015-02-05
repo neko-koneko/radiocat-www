@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("utils.php");
 require_once("time_lib.php");
 require_once("dbal.php");

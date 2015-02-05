@@ -1,4 +1,4 @@
-<?
+<?php
 require_once(dirname(__FILE__).'/get_mp3info.php');
 require_once(dirname(__FILE__).'/time_lib.php');
 
