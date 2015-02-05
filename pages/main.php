@@ -13,13 +13,13 @@ $global_keywords = 'Панель управления';
 //auth form
 require_once ('inc/auth_form.php');
 
-?>
 
 
 
- <!-- content -->
-<div id="content">
-<?
+
+echo ' <!-- content -->';
+echo '<div id="content">';
+
 
 
 echo '<div class="calendar_nav">

@@ -28,7 +28,7 @@ require_once ('inc/auth_form.php');
  <!-- content -->
 <div id="content">
 
-<?
+<?php
 
  echo '<div class="calendar_nav">
       <table class="w100 debug ctable calendar_nav">

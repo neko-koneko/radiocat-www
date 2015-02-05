@@ -14,8 +14,8 @@ $base = "http://".$_SERVER['HTTP_HOST'].(dirname($_SERVER['PHP_SELF']) != "\\" ?
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="<?=$global_description?>">
-<meta name="keywords" content="<?=$global_keywords?>">
+<meta name="description" content="<?php echo $global_description; ?>">
+<meta name="keywords" content="<?php echo $global_keywords; ?>">
 <meta name="Autor" content="Королёв Алексей a.k.a _emploi-kun_ (программирование) +79022511929">
 <meta name="robots" content="index,follow">
 
@@ -34,7 +34,7 @@ $base = "http://".$_SERVER['HTTP_HOST'].(dirname($_SERVER['PHP_SELF']) != "\\" ?
   Радио Барсик
  </H1>
 
- <img src='<?=$base?>files/images/503/503.jpg'>
+ <img src='<?php echo $base; ?>files/images/503/503.jpg'>
 
  <H2>
   Сайт временно недоступен по причине отказа Базы Данных

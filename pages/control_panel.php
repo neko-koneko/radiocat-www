@@ -23,7 +23,7 @@ echo '<script type="text/javascript" src="'.$base.'/js/control_panel.js"></scrip
 
  <!-- content -->
 <div id="content">
-<?
+<?php
 
 
 echo '<div class="calendar_nav">

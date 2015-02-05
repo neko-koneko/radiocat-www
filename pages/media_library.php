@@ -29,7 +29,7 @@ $new_order_type   = ($order_type=='up')?'down':'up';
 
 ?>
 
-<?
+<?php
 echo '<script type="text/javascript" src="'.$base.'/js/table_edit.js"></script>';
 echo '<script type="text/javascript" src="'.$base.'/js/media_library.js"></script>';
 echo '<script type="text/javascript" src="'.$base.'/player/niftyplayer.js"></script>';
@@ -37,7 +37,7 @@ echo '<script type="text/javascript" src="'.$base.'/player/niftyplayer.js"></scr
 
  <!-- content -->
 <div id="content">
-<?
+<?php
 echo '<div id="helper"></div>';
 
 echo '<div id="cart">

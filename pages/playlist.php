@@ -19,13 +19,13 @@ require_once ('inc/auth_form.php');
 
 ?>
 
-<?
+<?php
 echo '<script type="text/javascript" src="'.$base.'/js/playlist.js"></script>';
 echo '<script type="text/javascript" src="'.$base.'/js/tablednd.js"></script>';
  ?>
  <!-- content -->
 <div id="content">
-<?
+<?php
 //print_r ($_POST);
 
 switch($main_request_array[1])

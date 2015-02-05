@@ -29,7 +29,7 @@ require_once ('inc/auth_form.php');
  <!-- content -->
 <div id="content">
 
-<?
+<?php
  if ($main_request_array[1]=='new')
  {  print_playlist_new_form(); }
  if ($main_request_array[1]=='add')
@@ -185,7 +185,7 @@ require_once ('inc/auth_form.php');
 </div>
     <!-- content end -->
 
-<?
+<?php
 
 
 

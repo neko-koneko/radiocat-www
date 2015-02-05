@@ -21,7 +21,7 @@ require_once ('inc/auth_form.php');
 ?>
 
 
-<?
+<?php
 
 
 $current_year = intval(($main_request_array[1]=='')?date("Y"):$main_request_array[1]);
@@ -41,7 +41,7 @@ if ($current_day==0){$current_day = intval(date("d"));}
  <!-- content -->
 <div id="content">
 
-<?
+<?php
   if ($main_request_array[2]=='')
   {    print_year_table($current_year,$current_month);  }
   else if ($main_request_array[3]=='')
@@ -60,7 +60,7 @@ if ($current_day==0){$current_day = intval(date("d"));}
 </div>
     <!-- content end -->
 
-<?
+<?php
 
 function print_year_table($current_year,$current_month)
 {
