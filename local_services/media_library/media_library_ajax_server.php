@@ -330,7 +330,7 @@ switch ($request)
           if (!is_file($filename))
           {
            	$error_flag=true;
-           	$error_string.= $file_id.'#tФайл не найден#n';
+           	$error_string.= 'Файл c id='.$file_id.' ('.$filename.') не существует#n';
           		continue;
           }
 	   $enc_files[]=base64_encode($filename);
@@ -407,19 +407,19 @@ switch ($request)
     $filename = base64_decode($_POST['filename']);
     $force_update = ($_POST['force_update']=='Y')?true:false;
 
-    if (strpos($filename, $config['media']['media_root_folder'])!==0){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
+    if (strpos($filename, $config['media']['media_root_folder'])!==0){echo "WARN#nПлохое имя файла (".htmlspecialchars($filename).') - файл находится вне каталога медиатеки ('.$config['media']['media_root_folder'].')'; return;}
     $filename_parts = explode('/',$filename);
-    if (in_array('..',$filename_parts)){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
+    if (in_array('..',$filename_parts)){echo "WARN#nПлохое имя файла (".htmlspecialchars($filename).') - недопустимый символ .. (1)'; return;}
     $filename_parts = explode("\\",$filename);
-    if (in_array('..',$filename_parts)){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
-    if (!is_file($filename)){echo "ER#nПлохое имя файла ".htmlspecialchars($filename); return;}
+    if (in_array('..',$filename_parts)){echo "WARN#nПлохое имя файла ".htmlspecialchars($filename).') - недопустимый символ .. (2)'; return;}
+    if (!is_file($filename)){echo "WARN#nФайл не найден (".htmlspecialchars($filename).')'; return;}
     $context = get_last_context();
 
    // echo "OK#n";
     $result = media_add_file_data($filename,$force_update);
     if ($result['error'])
     {
-    	echo "ER#nНе удалось обновить файл ".htmlspecialchars($filename).' '.$result['description'];
+    	echo "WARN#nНе удалось обновить файл ".htmlspecialchars($filename).' '.$result['description'];
     	return;
     }
 

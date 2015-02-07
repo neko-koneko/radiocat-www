@@ -304,9 +304,12 @@ function a_media_library_update_files(data)
 
  arr = data.split('#n');
  if (arr[0]=='RELOAD') {window.location.reload(true);}
- if (arr[0]!='OK') {
- 	if(done_file_list){ done_file_list.innerHTML="Ошибка - "+data+done_file_list.innerHTML;}
+ if (arr[0]=='ER') {
+ 	if(done_file_list){ done_file_list.innerHTML="Ошибка - "+data+done_file_list.innerHTML+'<br>';}
  	return;
+ 	}
+ if (arr[0]=='WARN') {
+ 	if(done_file_list){ done_file_list.innerHTML="Ошибка - "+data+done_file_list.innerHTML+'<br>';}
  	}
  media_update_file_index++;
 
