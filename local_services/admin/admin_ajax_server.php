@@ -1,5 +1,6 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
+error_reporting(E_ALL);
 
 mb_internal_encoding( 'UTF-8');
 mb_regex_encoding( 'UTF-8');
@@ -25,8 +26,6 @@ require_once "../../inc/playlist.php";
 require_once "../../inc/auth.php";
 require_once '../../inc/admin_users_view.php';
 
-require_once "../../inc/id.php";
-require_once "../../inc/id3v2.php";
 
 
 if (!reconnect_db()){ die ('ER#nНет соединения с MySQL');}
