@@ -1,0 +1,18 @@
+	Alias /radio /usr/local/www/radio
+#	DocumentRoot /usr/local/www/radio
+
+	<Directory  /usr/local/www/radio>
+		Options  Indexes FollowSymLinks
+
+		AllowOverride All
+		
+		#RewriteEngine On
+		#RewriteBase /radio
+		#RewriteRule ^([a-zA-Z0-9_/-]*)$ index.php
+
+		DirectoryIndex index.php
+		Order allow,deny
+		allow from all
+	</Directory>
+
+

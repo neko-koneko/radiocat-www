@@ -18,11 +18,6 @@ require_once "../../config/media_config.php";
 require_once "../../inc/init.php";
 
 require_once "../../inc/dbal.php";
-require_once "../../inc/media.php";
-require_once "../../inc/playlist.php";
-
-require_once "../../inc/id.php";
-require_once "../../inc/id3v2.php";
 
 
 if (!reconnect_db()){ die ('ER#nНет соединения с MySQL');}

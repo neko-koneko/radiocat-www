@@ -1,0 +1,1599 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 11">
+<meta name="Originator" content="Microsoft Word 11">
+<link rel="File-List" href="installation_manual_ru.files/filelist.xml">
+<title>Установка интернет-радио на базе IceCast и Ices на базе сервера с ОС
+Ubuntu 12</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Admin</o:Author>
+  <o:LastAuthor>Admin</o:LastAuthor>
+  <o:Revision>11</o:Revision>
+  <o:TotalTime>27</o:TotalTime>
+  <o:Created>2015-07-10T11:32:00Z</o:Created>
+  <o:LastSaved>2015-07-10T11:59:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1928</o:Words>
+  <o:Characters>10993</o:Characters>
+  <o:Company>Ace Ball Jam Inc.</o:Company>
+  <o:Lines>91</o:Lines>
+  <o:Paragraphs>25</o:Paragraphs>
+  <o:CharactersWithSpaces>12896</o:CharactersWithSpaces>
+  <o:Version>11.6568</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>130</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:DoNotHyphenateCaps/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas>false</w:ValidateAgainstSchemas>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotUnderlineInvalidXML/>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+  <w:LsdException Locked="true" Name="Normal"/>
+  <w:LsdException Locked="true" Name="heading 1"/>
+  <w:LsdException Locked="true" Name="heading 2"/>
+  <w:LsdException Locked="true" Name="heading 3"/>
+  <w:LsdException Locked="true" Name="heading 4"/>
+  <w:LsdException Locked="true" Name="heading 5"/>
+  <w:LsdException Locked="true" Name="heading 6"/>
+  <w:LsdException Locked="true" Name="heading 7"/>
+  <w:LsdException Locked="true" Name="heading 8"/>
+  <w:LsdException Locked="true" Name="heading 9"/>
+  <w:LsdException Locked="true" Name="toc 1"/>
+  <w:LsdException Locked="true" Name="toc 2"/>
+  <w:LsdException Locked="true" Name="toc 3"/>
+  <w:LsdException Locked="true" Name="toc 4"/>
+  <w:LsdException Locked="true" Name="toc 5"/>
+  <w:LsdException Locked="true" Name="toc 6"/>
+  <w:LsdException Locked="true" Name="toc 7"/>
+  <w:LsdException Locked="true" Name="toc 8"/>
+  <w:LsdException Locked="true" Name="toc 9"/>
+  <w:LsdException Locked="true" Name="caption"/>
+  <w:LsdException Locked="true" Name="Title"/>
+  <w:LsdException Locked="true" Name="Subtitle"/>
+  <w:LsdException Locked="true" Name="Strong"/>
+  <w:LsdException Locked="true" Name="Emphasis"/>
+  <w:LsdException Locked="true" Name="Table Grid"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:§­§°§®§Ц;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:204;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611985 1073741899 0 0 159 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:204;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611985 1073750139 0 0 159 0;}
+@font-face
+	{font-family:OpenSymbol;
+	panose-1:5 1 0 0 0 0 0 0 0 0;
+	mso-font-alt:"Arial Unicode MS";
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-2147483473 268561642 0 0 1 0;}
+@font-face
+	{font-family:NSimSun;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@NSimSun";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:Calibri;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Calibri;}
+h3
+	{mso-style-parent:Заголовок;
+	mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-hyphenate:none;
+	font-size:14.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;
+	font-weight:normal;}
+p.MsoIndex1, li.MsoIndex1, div.MsoIndex1
+	{mso-style-update:auto;
+	mso-style-noshow:yes;
+	mso-style-next:Обычный;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:11.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-11.0pt;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:Calibri;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Calibri;}
+p.MsoIndexHeading, li.MsoIndexHeading, div.MsoIndexHeading
+	{mso-style-noshow:yes;
+	mso-style-parent:Базовый;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:no-line-numbers;
+	mso-hyphenate:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;}
+p.MsoList, li.MsoList, div.MsoList
+	{mso-style-parent:"Основной текст";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	mso-hyphenate:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-parent:Базовый;
+	mso-style-link:"Title Char";
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:no-line-numbers;
+	mso-hyphenate:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;
+	font-style:italic;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-parent:Базовый;
+	mso-style-link:"Body Text Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	mso-hyphenate:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;}
+tt
+	{font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-noshow:yes;
+	mso-style-locked:yes;
+	mso-style-link:"Заголовок 3";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-hansi-font-family:Cambria;
+	mso-bidi-font-family:Cambria;
+	font-weight:bold;}
+p.a, li.a, div.a
+	{mso-style-name:Базовый;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	mso-hyphenate:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;}
+span.a0
+	{mso-style-name:"Маркеры списка";
+	mso-style-parent:"";
+	font-family:OpenSymbol;
+	mso-ascii-font-family:OpenSymbol;
+	mso-hansi-font-family:OpenSymbol;
+	mso-bidi-font-family:OpenSymbol;}
+span.a1
+	{mso-style-name:"Исходный текст";
+	mso-style-parent:"";
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:NSimSun;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+span.a2
+	{mso-style-name:"Непропорциональный текст";
+	mso-style-parent:"";
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:NSimSun;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+p.a3, li.a3, div.a3
+	{mso-style-name:Заголовок;
+	mso-style-parent:Базовый;
+	mso-style-next:"Основной текст";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	page-break-after:avoid;
+	mso-hyphenate:none;
+	font-size:14.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;}
+span.BodyTextChar
+	{mso-style-name:"Body Text Char";
+	mso-style-noshow:yes;
+	mso-style-locked:yes;
+	mso-style-link:"Основной текст";}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-locked:yes;
+	mso-style-link:Название;
+	mso-ansi-font-size:16.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-hansi-font-family:Cambria;
+	mso-bidi-font-family:Cambria;
+	mso-font-kerning:14.0pt;
+	font-weight:bold;}
+p.a4, li.a4, div.a4
+	{mso-style-name:"Текст в заданном формате";
+	mso-style-parent:Базовый;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	mso-hyphenate:none;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:NSimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;}
+p.a5, li.a5, div.a5
+	{mso-style-name:"Содержимое таблицы";
+	mso-style-parent:Базовый;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:no-line-numbers;
+	mso-hyphenate:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;}
+p.a6, li.a6, div.a6
+	{mso-style-name:"Заголовок таблицы";
+	mso-style-parent:"Содержимое таблицы";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:no-line-numbers;
+	mso-hyphenate:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:SimSun;
+	color:#00000A;
+	mso-fareast-language:ZH-CN;
+	font-weight:bold;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;
+	mso-header-margin:0cm;
+	mso-footer-margin:0cm;
+	mso-forms-protection:no;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Обычная таблица";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:Calibri;
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body style="tab-interval:35.45pt" lang="RU">
+
+<div class="Section1">
+
+<p class="MsoNormal"><b>Установка интернет-радио на базе <span class="SpellE">IceCast</span>
+и <span class="SpellE">Ices</span> на базе сервера с ОС Ubuntu 12.04 LTS<o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><b>1</b>) <b>Предварительные установки</b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">должен быть установлен LAMP-сервер в конфигурации</p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="SpellE">Ububntu</span> server 12.04 LTS </span>или<span style="mso-ansi-language:
+EN-US"> </span>выше<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="GramE">apache</span> 2.2<o:p></o:p></span></p>
+
+<p class="MsoNormal">- PHP 5.3 – 5.5</p>
+
+<p class="MsoNormal">- <span class="SpellE">MySQL</span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Дополнительно устанавливается <span class="SpellE">PHPmyadmin</span>
+и <span class="SpellE">mc</span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><b>2</b>) <b>Установка сервера вещания потока Icecast2</b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><b>вариант установки из пакетов (не рекомендуется, т.к.
+обычно доступна только старая версия) <o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ <span class="SpellE">apt-get</span> <span class="SpellE">install</span> icecast2</span><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">По завершении установки появится окно для конфигурации
+параметров.</p>
+
+<p class="MsoNormal">Следует ввести </p>
+
+<p class="MsoNormal">- имя домена</p>
+
+<p class="MsoNormal">- пароль для подключения к сервису <span class="SpellE">IseCast</span></p>
+
+<p class="MsoNormal">- пароль для подключения в режиме <span class="SpellE">релея</span>
+(сервиса ретрансляции)</p>
+
+<p class="MsoNormal">- пароль администратора для управления сервисом <span class="SpellE">IseCast</span> через <span class="SpellE">веб-интерфейс</span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Проверить работу сервера:</p>
+
+<p class="MsoNormal">запустить</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ <span class="SpellE">sudo</span> <span class="SpellE">service</span> icecast2 <span class="SpellE">start</span></span><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">После этого можно будет зайти на <span class="SpellE">веб-интерфейс</span>
+сервера по 8000 порту</p>
+
+<p class="MsoNormal">Например, http://192.168.0.100:8000</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><b>вариант установки со сборкой (рекомендуется)<o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">установить</span><span style="mso-ansi-language:EN-US"> </span>компилятор<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+apt-get install build-essential</span></i><i><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">установить</span><span style="mso-ansi-language:EN-US"> </span>библиотеки<span style="mso-ansi-language:EN-US" lang="EN-US">:<br>
+<span class="SpellE"><span style="color:maroon">libshout</span></span><span style="color:maroon">-dev, libmp3lame-dev, libxml2-dev, </span></span><span class="SpellE"><span style="mso-fareast-font-family:NSimSun;
+color:maroon;mso-ansi-language:EN-US" lang="EN-US">libperl</span></span><span style="mso-fareast-font-family:NSimSun;color:maroon;mso-ansi-language:EN-US" lang="EN-US">-dev,
+libmp3-info-perl</span><span style="color:maroon;mso-ansi-language:
+EN-US" lang="EN-US">, libxslt1-dev</span><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+apt-get install <span class="SpellE">libshout</span>-dev libmp3lame-dev
+libxml2-dev </span></i><span class="SpellE"><i><span style="mso-fareast-font-family:
+NSimSun;background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">libperl</span></i></span><i><span style="mso-fareast-font-family:NSimSun;background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">-dev libmp3-info-perl</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US"> libxslt1-dev</span></i><i><span style="mso-fareast-font-family:
+NSimSun;mso-ansi-language:EN-US" lang="EN-US"> </span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><b><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></b></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">cd</span></span>
+/<span class="SpellE">tmp</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">wget</span></span>
+http://downloads.xiph.org/releases/icecast/icecast-2.4.1.tar.gz<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="GramE">tar</span> -<span class="SpellE">zxvf</span> /tmp/icecast-2.4.1.tar.gz<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">cd</span></span>
+icecast-2.4.1<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span class="GramE"><i><span style="background:
+silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">$ ./</span></i></span><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">configure <o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ make<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+make install</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">Настроить конфигурацию сервера <span style="mso-spacerun:yes">&nbsp;</span>в <span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">usr</span></span><span style="color:green">/</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">local</span><span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">etc</span><span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">icecast</span></span><span style="color:green">.</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">xml</span></p>
+
+<p class="MsoNormal">указать</p>
+
+<p class="MsoNormal">- имя домена</p>
+
+<p class="MsoNormal">- пароль для подключения к сервису <span class="SpellE">IseCast</span></p>
+
+<p class="MsoNormal">- пароль для подключения в режиме <span class="SpellE">релея</span>
+(сервиса ретрансляции)</p>
+
+<p class="MsoNormal">- пароль администратора для управления сервисом <span class="SpellE">IseCast</span> через <span class="SpellE">веб-интерфейс</span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Настроить каталог для логов</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- создать папку <span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">usr</span></span><span style="color:green">/</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">local</span><span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">var</span></span><span style="color:green">/</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">log</span><span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">icecast</span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">сменить</span><span style="mso-ansi-language:EN-US"> </span>владельца<span style="mso-ansi-language:EN-US"> </span>на<span style="mso-ansi-language:EN-US">
+<span lang="EN-US">ices<o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chown</span> -R <span class="SpellE">ices:ices</span> </span></i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">/<span class="SpellE">usr/local/var/log/icecast</span></span><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">разрешить</span><span style="mso-ansi-language:EN-US"> </span>запись<span style="mso-ansi-language:EN-US"> </span>в<span style="mso-ansi-language:EN-US">
+</span>неё<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">chmod</span></span>
+0755 </span></i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">/<span class="SpellE">usr/local/var/log/icecast</span></span><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">добавить<span style="mso-ansi-language:EN-US"> </span>автозапуск<span style="mso-ansi-language:EN-US"> <span class="SpellE"><b><span lang="EN-US">icecast</span></b></span><span lang="EN-US"> </span></span>при<span style="mso-ansi-language:EN-US"> </span>загрузке<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+update-<span class="SpellE">rc.d</span> <span class="SpellE">icecast</span> defaults</span></i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b>3</b>) <b>Установка генератора потока <span class="SpellE">IceS</span></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Следует собрать <span class="SpellE"><b>Ices</b></span><b> </b>из
+исходников вручную с поддержкой <span class="SpellE"><b>mini-perl</b></span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">установить</span><span style="mso-ansi-language:EN-US"> </span>компилятор<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+apt-get install build-essential</span></i><i><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">установить</span><span style="mso-ansi-language:EN-US"> </span>библиотеки<span style="mso-ansi-language:EN-US" lang="EN-US">:<br>
+<span class="SpellE"><span style="color:maroon">libshout</span></span><span style="color:maroon">-dev, libmp3lame-dev, libxml2-dev, </span></span><span class="SpellE"><span style="mso-fareast-font-family:NSimSun;
+color:maroon;mso-ansi-language:EN-US" lang="EN-US">libperl</span></span><span style="mso-fareast-font-family:NSimSun;color:maroon;mso-ansi-language:EN-US" lang="EN-US">-dev,
+libmp3-info-perl</span><span style="color:maroon;mso-ansi-language:
+EN-US" lang="EN-US"> <br style="mso-special-character:line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--></span><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+apt-get install <span class="SpellE">libshout</span>-dev libmp3lame-dev
+libxml2-dev </span></i><span class="SpellE"><i><span style="mso-fareast-font-family:
+NSimSun;background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">libperl</span></i></span><i><span style="mso-fareast-font-family:NSimSun;background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">-dev libmp3-info-perl</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"> <o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">Для вещания в mp3 следует использовать версию <b style="mso-bidi-font-weight:normal"><span style="color:black;
+mso-ansi-language:EN-US" lang="EN-US">Ices 0.4</span></b><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">cd</span></span>
+/<span class="SpellE">tmp</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">wget</span></span>
+http://downloads.us.xiph.org/releases/ices/ices-0.4.tar.gz<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="GramE">tar</span> -<span class="SpellE">zxvf</span> /tmp/ices-0.4.tar.gz<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">cd</span></span>
+ices-0.4<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span class="GramE"><i><span style="background:
+silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">$ ./</span></i></span><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">configure --with-<span class="SpellE">perl</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ make<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+make install</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b><span style="mso-ansi-language:EN-US" lang="EN-US">4</span></b><span style="mso-ansi-language:EN-US" lang="EN-US">)<b> </b></span><b>Настройка</b><b><span style="mso-ansi-language:EN-US" lang="EN-US"> Ices<br style="mso-special-character:
+line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--></span></b><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">скопировать</span><span style="mso-ansi-language:EN-US"> </span>конфигурационный<span style="mso-ansi-language:EN-US"> </span>файл<span style="mso-ansi-language:
+EN-US"> <b><span lang="EN-US">Ices</span></b><span lang="EN-US"> <o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span><span style="color:blue">.install/<span class="SpellE">config/usr/local/etc/ices.conf</span></span> в <span style="color:green">/<span class="SpellE">usr/local/etc/ices.conf</span></span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">- в секции конфигурационного файла <span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">usr</span></span><span style="color:green">/</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">local</span><span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">etc</span><span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">ices</span><span style="color:green">.</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">conf</span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;mso-highlight:
+silver">&lt;<span class="SpellE">Password</span>&gt;<span class="SpellE"><b>hackme</b></span>&lt;/<span class="SpellE">Password</span>&gt;</span><span style="color:#993366"><o:p></o:p></span></p>
+
+<p class="MsoNormal">заменить <span class="SpellE"><b>hackme</b></span> на пароль
+для подключения к сервису <span class="SpellE"><b>IseCast</b></span><b> </b>(см. п.
+2)</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- скопировать <span class="SpellE">perl-скрипт</span> <span style="mso-spacerun:yes">&nbsp;</span>для получения треков </p>
+
+<p class="MsoNormal">из<span style="mso-ansi-language:EN-US"> <span style="color:blue" lang="EN-US">.install/<span class="SpellE">config/usr/local/etc/modules/ices.pm</span></span><span lang="EN-US"> в <span style="color:green">/<span class="SpellE">usr/local/etc/modules/ices.pm</span><o:p></o:p></span></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">- скопировать <span class="SpellE">php-скрипт</span> для
+получения треков </p>
+
+<p class="MsoNormal">из<span style="mso-ansi-language:EN-US"> <span style="color:blue" lang="EN-US">.install/<span class="SpellE">config/usr/local/etc/modules/nextsong.php</span></span><span lang="EN-US"> в <span style="color:green">/<span class="SpellE">usr/local/etc/modules/nextsong.php</span></span><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">- установить настройки <span class="SpellE">соедининия</span>
+с базой данных в <span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">usr</span></span><span style="color:green">/</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">local</span><span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">etc</span><span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">modules</span><span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">nextsong</span></span><span style="color:green">.</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">php</span></span></p>
+
+<p class="MsoNormal"><span style="mso-spacerun:yes">&nbsp;</span><span style="mso-ansi-language:EN-US" lang="EN-US">(</span><span class="GramE">параметры</span><span style="mso-ansi-language:EN-US" lang="EN-US"> $<span class="SpellE">config</span>[‘<span class="SpellE">mysql</span>’] — <b>host user password database</b>)<o:p></o:p></span></p>
+
+<p class="MsoNormal">примечание: описание настройки соединения с БД и значения
+параметров — см далее (п.8)</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- установить настройки <span class="SpellE">локали</span> и
+временной зоны данных в /<span class="SpellE"><span style="color:green;
+mso-ansi-language:EN-US" lang="EN-US">usr</span></span><span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">local</span><span style="color:green">/</span><span style="color:green;mso-ansi-language:
+EN-US" lang="EN-US">etc</span><span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">modules</span><span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">nextsong</span></span><span style="color:green">.</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">php</span></span></p>
+
+<p class="MsoNormal"><span style="mso-spacerun:yes">&nbsp;</span><span style="mso-ansi-language:EN-US" lang="EN-US">(</span><span class="GramE">параметры</span><span style="mso-ansi-language:EN-US" lang="EN-US"> $<span class="SpellE">config</span>[‘local’]
+— <b>locale <span class="SpellE">timezone</span></b>)<o:p></o:p></span></p>
+
+<p class="MsoNormal">настроить согласно текущей конфигурации <span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">linux</span></span>-системы</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- установить права на выполнение и чтение файлов </p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">chmod</span></span>
+0555 /<span class="SpellE">usr/local/etc/modules/ices.pm</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">chmod</span></span>
+0555 <a name="__DdeLink__21_1465385960">/</a><span class="SpellE">usr/local/etc/modules/nextsong.php</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="GramE">c<span style="mso-ansi-language:RU" lang="RU">копировать</span></span></span><span style="mso-ansi-language:EN-US"> </span><span class="SpellE">скрипт</span><span style="mso-ansi-language:EN-US"> </span>автозапуска<span style="mso-ansi-language:EN-US" lang="EN-US"> Ices <o:p></o:p></span></p>
+
+<p class="MsoNormal">из<span style="mso-ansi-language:EN-US"> <span style="color:blue" lang="EN-US">.install/<span class="SpellE">config/etc/init.d/ices</span></span><span lang="EN-US"> </span></span>в<span style="mso-ansi-language:EN-US"> <span style="color:green" lang="EN-US">/etc/<span class="SpellE">init.d</span>/ices<o:p></o:p></span></span></p>
+
+<p class="MsoNormal">установить права на выполнение и чтение файлов </p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">chmod</span></i></span><i><span style="background:
+silver;mso-highlight:silver"> 0775 /</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">etc</span><span style="background:silver;mso-highlight:silver">/</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">init</span><span style="background:silver;mso-highlight:silver">.</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">d</span><span style="background:silver;mso-highlight:silver">/</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">ices</span><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">создать пользователя <span style="mso-ansi-language:
+EN-US" lang="EN-US">ices</span><span lang="EN-US"> </span>для запуска <span class="SpellE">Ices</span>
+с ограниченными правами</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">useradd</span> -M<span style="mso-spacerun:yes">&nbsp; </span>-r
+-s /bin/false -c "ices user" ices</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">создать</span><span style="mso-ansi-language:EN-US"> </span>папку<span style="mso-ansi-language:EN-US"> <span style="color:green" lang="EN-US">/<span class="SpellE">usr/local/tmp/ices</span></span><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">сменить</span><span style="mso-ansi-language:EN-US"> </span>владельца<span style="mso-ansi-language:EN-US"> </span>на<span style="mso-ansi-language:
+EN-US" lang="EN-US"> ices<o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chown</span> -R <span class="SpellE">ices:ices</span> /<span class="SpellE">usr/local/tmp/ices</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal">- разрешить запись в неё</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">chmod</span></i></span><i><span style="background:
+silver;mso-highlight:silver"> 0755 /</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">usr</span></i></span><i><span style="background:silver;mso-highlight:
+silver">/</span></i><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">local</span><span style="background:silver;
+mso-highlight:silver">/</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">tmp</span></i></span><i><span style="background:silver;mso-highlight:silver">/</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">ices</span><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">добавить автозапуск <b><span style="mso-ansi-language:
+EN-US" lang="EN-US">ices</span></b><span lang="EN-US"> </span>при загрузке</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">sudo</span></i></span><i><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">update</span><span style="background:silver;mso-highlight:silver">-</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">rc</span></i></span><i><span style="background:silver;mso-highlight:
+silver">.</span></i><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">d</span><span style="background:
+silver;mso-highlight:silver" lang="EN-US"> </span></i><i><span style="background:
+silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">ices</span><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">defaults</span> <o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<b><span style="font-size:11.0pt;font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Calibri;mso-ansi-language:RU;mso-fareast-language:
+RU;mso-bidi-language:AR-SA"><br style="page-break-before:always" clear="all">
+</span></b>
+
+<p class="MsoNormal"><b>5</b>)<b> Настройка </b><b><span style="mso-ansi-language:EN-US" lang="EN-US">PHP</span> и </b><b><span style="mso-ansi-language:EN-US" lang="EN-US">Perl</span><o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><b>Установка расширения </b><span class="SpellE"><b><span style="mso-ansi-language:EN-US" lang="EN-US">scrypt</span></b></span><b> для </b><b><span style="mso-ansi-language:EN-US" lang="EN-US">PHP</span><span lang="EN-US"> </span><o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal">Установить<span style="mso-ansi-language:EN-US"> <span lang="EN-US">PECL<o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+apt-get install <span class="SpellE">php</span>-pear</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">pecl</span> install <span class="SpellE">scrypt</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">подключить<span style="mso-ansi-language:EN-US"> </span>расширение<span style="mso-ansi-language:EN-US" lang="EN-US"> <span class="SpellE">scrypt</span> </span>в<span style="mso-ansi-language:EN-US" lang="EN-US"> PHP<o:p></o:p></span></p>
+
+<p class="MsoNormal">создать<span style="mso-ansi-language:EN-US"> </span>файл<span style="mso-ansi-language:EN-US"> <span style="color:green" lang="EN-US">/etc/php5/apache2/conf.d/scrypt.ini</span><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+touch /etc/php5/apache2/conf.d/scrypt.ini</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">в<span style="mso-ansi-language:EN-US"> </span>файле<span style="mso-ansi-language:EN-US"> <span style="color:green" lang="EN-US">/etc/php5/apache2/conf.d/scrypt.ini</span><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal">создать запись</p>
+
+<p class="MsoNormal"><span class="SpellE"><span style="color:#993366;background:
+silver;mso-highlight:silver">extension=scrypt.so</span></span><span style="color:#993366"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">перезапустить <span style="mso-ansi-language:
+EN-US" lang="EN-US">apache</span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+service apache2 restart</span></i><i><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></i></p>
+
+<p class="MsoNormal"><b><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></b></p>
+
+<p class="MsoNormal"><b>Установка</b><b><span style="mso-ansi-language:EN-US"> </span>модуля</b><b><span style="mso-ansi-language:EN-US"> <span lang="EN-US">JSON:<span class="GramE">:XS</span>
+</span></span>для</b><b><span style="mso-ansi-language:EN-US"> <span lang="EN-US">Perl </span></span></b><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">установить<span style="mso-ansi-language:EN-US"> <span lang="EN-US">Perl </span></span>модуль<span style="mso-ansi-language:EN-US"> <span lang="EN-US">JSON:<span class="GramE">:XS</span><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><i style="mso-bidi-font-style:normal"><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span> <span class="SpellE">cpan</span>
+JSON::XS</span></i><i style="mso-bidi-font-style:normal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal">(возможно, <span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">cpan</span></span><span lang="EN-US"> </span>потребует
+настроить <span class="SpellE">субситему</span> <span class="SpellE">Perl</span> с
+помощью мастера)</p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<b><span style="font-size:11.0pt;font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Calibri;mso-ansi-language:RU;mso-fareast-language:
+RU;mso-bidi-language:AR-SA"><br style="page-break-before:always" clear="all">
+</span></b>
+
+<p class="MsoNormal"><b>6</b>) <span class="SpellE"><b>Конфигация</b></span><b> </b><b><span style="mso-ansi-language:EN-US" lang="EN-US">apache</span><span lang="EN-US"> </span>(2.2)
+</b><b><span style="mso-ansi-language:EN-US" lang="EN-US">c</span> использованием
+протокола </b><b><span style="mso-ansi-language:EN-US" lang="EN-US">HTTPS</span></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">sudo</span></i></span><i><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">mkdir</span></i></span><i><span style="background:silver;mso-highlight:
+silver"> /</span></i><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">etc</span><span style="background:silver;
+mso-highlight:silver">/</span></i><i><span style="background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">apache</span><span style="background:silver;mso-highlight:silver">2/</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">ssl</span></i></span><i><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- Сгенерировать <span class="SpellE">самоподписанный</span> <span style="mso-ansi-language:EN-US" lang="EN-US">SSL</span>-сертификат</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">openssl</span> <span class="SpellE">req</span> -x509 -nodes
+-days 1825 -<span class="SpellE">newkey</span> rsa:4096 -<span class="SpellE">keyout</span>
+/etc/apache2/ssl/apache_radio.key -out /etc/apache2/ssl/apache_radio.crt</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal">программа запросит данные владельца сертификата
+(расположение, название компании, доменное имя, почту администратора)</p>
+
+<p class="MsoNormal">следует ввести необходимые данные</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- подключить сертификат для <span class="GramE">виртуального</span>
+хоста <span class="SpellE">apache</span></p>
+
+<p class="MsoNormal"><span class="GramE"><span style="mso-ansi-language:
+EN-US" lang="EN-US">c</span>копировать</span><span style="mso-ansi-language:EN-US"> </span>конфигурацию<span style="mso-ansi-language:EN-US"> <span lang="EN-US">apache </span></span>из<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">.install/config/etc/apache2/sites-available/radio-ssl</span><span style="mso-ansi-language:EN-US" lang="EN-US"> </span>в<span style="mso-ansi-language:
+EN-US"> <span style="color:green" lang="EN-US">/etc/apache2/sites-available/radio-ssl<o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">Модифицировать в соответствии с рекомендациями <span class="GramE">на</span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">https</span>://<span style="mso-ansi-language:EN-US" lang="EN-US">community</span>.<span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">qualys</span></span>.<span style="mso-ansi-language:EN-US" lang="EN-US">com</span>/<span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">blogs</span></span>/<span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">securitylabs</span></span>/2013/08/05/<span style="mso-ansi-language:EN-US" lang="EN-US">configuring</span>-<span style="mso-ansi-language:EN-US" lang="EN-US">apache</span>-<span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">nginx</span></span>-<span style="mso-ansi-language:EN-US" lang="EN-US">and</span>-<span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">openssl</span></span>-<span style="mso-ansi-language:EN-US" lang="EN-US">for</span>-<span style="mso-ansi-language:EN-US" lang="EN-US">forward</span>-<span style="mso-ansi-language:EN-US" lang="EN-US">secrecy</span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- <span class="GramE"><span style="mso-ansi-language:
+EN-US" lang="EN-US">p</span></span><span class="SpellE">азрешить</span> доступ к панели
+управления радио по <span style="mso-ansi-language:EN-US" lang="EN-US">https</span>
+для <span class="SpellE">apache</span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+a2ensite radio-<span class="SpellE">ssl</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="SpellE"><span class="GramE">включить</span></span> SSL в apache<o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+a2enmod <span class="SpellE">ssl</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="SpellE"><span class="GramE">включить</span></span> <span class="SpellE">модуль</span>
+<span class="SpellE">mod_rewrite</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+a2enmod rewrite</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="GramE">п<span class="SpellE"><span style="mso-ansi-language:RU" lang="RU">ерезапустить</span></span></span>
+apache<o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+service apache2 restart</span></i><i><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<b><span style="font-size:11.0pt;font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Calibri;mso-ansi-language:RU;mso-fareast-language:
+RU;mso-bidi-language:AR-SA"><br style="page-break-before:always" clear="all">
+</span></b>
+
+<p class="MsoNormal"><b>7</b>)<b> Установка <span class="SpellE">веб-интерфейса</span>
+для управления радио<o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- создать директорию <span style="color:green">/<span class="SpellE">usr</span>/<span class="SpellE">local</span>/<span class="SpellE">www</span>/<span class="SpellE">radio</span></span></p>
+
+<p class="MsoNormal">- разрешить запись в неё</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">sudo</span></i></span><i><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">chmod</span></i></span><i><span style="background:silver;mso-highlight:
+silver"> 0777 /</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">usr</span></i></span><i><span style="background:silver;mso-highlight:silver">/</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">local</span><span style="background:silver;mso-highlight:silver">/</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">www</span><span style="background:silver;mso-highlight:silver">/</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">radio</span><span style="background:silver;mso-highlight:silver"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-spacerun:yes">&nbsp;</span></p>
+
+<p class="MsoNormal">- скопировать дистрибутив целиком в <span style="color:green">/<span class="SpellE">usr</span>/<span class="SpellE">local</span>/<span class="SpellE">www</span>/<span class="SpellE">radio</span></span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- поменять владельца папки <span style="color:green">/<span class="SpellE">usr</span>/<span class="SpellE">local</span>/<span class="SpellE">www</span>/<span class="SpellE">radio</span></span> на <span class="SpellE">apache</span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chown</span> -R www-<span class="SpellE">data:www</span>-data
+/<span class="SpellE">usr</span>/local/www/radio</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">- запретить модификацию файлов</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ <span class="SpellE">sudo</span> <span class="SpellE">chmod</span> -R 0444 /<span class="SpellE">usr</span>/<span class="SpellE">local</span>/<span class="SpellE">www</span>/<span class="SpellE">radio</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+find /<span class="SpellE">usr</span>/local/www/radio<span style="mso-spacerun:yes">&nbsp; </span>-type d -exec <span class="SpellE">chmod</span>
+755 {} +<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+find /<span class="SpellE">usr</span>/local/www/radio -type f -name "*.<span class="SpellE">php</span>" -print | <span class="SpellE">xargs</span> <span class="SpellE">chmod</span> 755</span></i><i><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="GramE">п<span class="SpellE"><span style="mso-ansi-language:RU" lang="RU">ерезапустить</span></span></span>
+apache<o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+service apache2 restart</span></i><i><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">Проверить, что работает интерфейс управления радио </p>
+
+<p class="MsoNormal">(хост http://192.168.0.100 <span class="GramE">выбран</span>
+для примера)</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">http://192.168.0.100/radio/</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><b>Должен выдать сообщение о недоступности базы данных
+(ошибка 503)<o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><b>Это ожидаемое поведение. Продолжайте далее, переходите к
+настройке Базы Данных<o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<b><span style="font-size:11.0pt;font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Calibri;mso-ansi-language:RU;mso-fareast-language:
+RU;mso-bidi-language:AR-SA"><br style="page-break-before:always" clear="all">
+</span></b>
+
+<p class="MsoNormal"><b>8</b>) <b>Установка и настройка базы данных <span class="SpellE">MySQL</span><o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- открыть <span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">phpMyAdmin</span></span><span lang="EN-US"> </span><b><span style="color:red">по </span></b><b><span style="color:red;
+mso-ansi-language:EN-US" lang="EN-US">https</span><span style="color:red"><o:p></o:p></span></b></p>
+
+<p class="MsoNormal">- создать базу данных <b><span style="mso-ansi-language:
+EN-US" lang="EN-US">radio</span><o:p></o:p></b></p>
+
+<p class="MsoNormal">- создать пользователя <b><span style="mso-ansi-language:
+EN-US" lang="EN-US">radio</span></b><span lang="EN-US"> </span><span style="mso-ansi-language:EN-US" lang="EN-US">c</span><span lang="EN-US"> </span>паролем</p>
+
+<p class="MsoNormal">- дать привилегии пользователю <b><span style="mso-ansi-language:EN-US" lang="EN-US">radio</span></b><span style="mso-spacerun:yes">&nbsp; </span>для выполнения запросов SELECT INSERT UPDATE
+DELETE для базы данных <b><span style="mso-ansi-language:EN-US" lang="EN-US">radio</span></b>
+</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- выполнить экспорт sql-таблиц из <span style="mso-spacerun:yes">&nbsp;</span>файла <span style="color:blue">.</span><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">install</span><span style="color:blue">/</span><span style="color:blue;mso-ansi-language:
+EN-US" lang="EN-US">database</span><span style="color:blue">/</span><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">radio</span><span style="color:blue">.</span><span class="SpellE"><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">sql</span></span><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><b>Настроить подключение к БД:<o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- установить настройки <span class="SpellE">соедининия</span>
+с базой данных в /<span class="SpellE">usr</span>/<span class="SpellE">local</span>/<span class="SpellE">www</span>/<span class="SpellE">radio</span>/<span class="SpellE">config</span>/<span style="mso-ansi-language:EN-US" lang="EN-US">db</span>_<span class="SpellE">config.php</span></p>
+
+<p class="MsoNormal"><span style="mso-spacerun:yes">&nbsp;</span><span style="mso-ansi-language:EN-US" lang="EN-US">(</span><span class="GramE">параметры</span><span style="mso-ansi-language:EN-US" lang="EN-US"> $<span class="SpellE">config</span>[‘<span class="SpellE">mysql</span>’] — <b>host user password database</b>)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">Проверить, что работает интерфейс управления радио </p>
+
+<p class="MsoNormal">(хост <span class="SpellE">http</span><span style="mso-ansi-language:EN-US" lang="EN-US">s</span>://192.168.0.100 <span class="GramE">выбран</span>
+для примера)</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span class="SpellE">http</span><span style="mso-ansi-language:EN-US" lang="EN-US">s</span>://192.168.0.100/<span class="SpellE">radio</span>/</p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><b>Проверить, что можно войти в панель управления радио<o:p></o:p></b></p>
+
+<p class="MsoNormal"><span class="SpellE">http</span><span style="mso-ansi-language:EN-US" lang="EN-US">s</span>://192.168.0.100/<span class="SpellE">radio</span>/</p>
+
+<p class="MsoNormal">используя <span class="SpellE">логин</span> и пароль администратора
+радио по умолчанию (<span style="color:#993300;mso-ansi-language:
+EN-US" lang="EN-US">admin</span>/<span class="SpellE"><span style="color:#993300;
+mso-ansi-language:EN-US" lang="EN-US">defaultpassword</span></span>)<br style="mso-special-character:
+line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--></p>
+
+<p class="MsoNormal"><b>Важно!<o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><b><span style="color:red">Обязательно сменить пароль
+пользователя <span class="SpellE">по-умолчанию</span>!<o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><b>9</b>)<b> Настройка дополнительных параметров<o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></b></p>
+
+<p class="MsoNormal">- установить настройки <span class="SpellE">локали</span> </p>
+
+<p class="MsoNormal">и временной зоны данных в <span style="color:green">/<span class="SpellE">usr</span>/<span class="SpellE">local</span>/<span class="SpellE">www</span>/<span class="SpellE">radio</span>/<span class="SpellE">config</span>/<span class="SpellE">local_config.php</span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">(</span><span class="GramE">параметры</span><span style="mso-ansi-language:EN-US" lang="EN-US"> $<span class="SpellE">config</span>[‘local’] — <b>locale <span class="SpellE">timezone</span></b>)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><br>
+настроить согласно текущей конфигурации <span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">linux</span></span>-системы</p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal">- установить каталог расположения музыкальных файлов в /<span class="SpellE"><span style="color:green">usr</span></span><span style="color:
+green">/<span class="SpellE">local</span>/<span class="SpellE">www</span>/<span class="SpellE">radio</span>/<span class="SpellE">config</span>/<span class="SpellE">media_config.php</span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">$<span class="SpellE"><span class="GramE">config</span></span><span class="GramE">[</span>'media']['<span class="SpellE">media_root_folder</span>'] = <b>/<span class="SpellE">usr</span>/local/music
+<o:p></o:p></b></span></p>
+
+<p class="MsoNormal"><b><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></b></p>
+
+<p class="MsoNormal"><b>Важно!<o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal">Каталог расположения музыкальных файлов следует настроить
+особым образом, если Вы планируете выгружать в него файлы по <span style="mso-ansi-language:EN-US" lang="EN-US">SFTP</span> — см. <span class="SpellE"><span class="GramE">п</span></span> 10)</p>
+
+<b><span style="font-size:11.0pt;font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Calibri;mso-ansi-language:RU;mso-fareast-language:
+RU;mso-bidi-language:AR-SA"><br style="page-break-before:always" clear="all">
+</span></b>
+
+<p class="MsoNormal"><b>10</b>) <b>Настройка каталога для загрузки музыкальных файлов
+по SFTP<o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- создать пользователя для работы по SFTP</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">groupadd</span> <span class="SpellE">sftponly</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE">sudo</span> <span class="SpellE">useradd</span><span style="mso-spacerun:yes">&nbsp; </span>-M -N<span style="mso-spacerun:yes">&nbsp; </span>-d /<span class="SpellE">usr</span>/local/music
+-s /bin/false -G <span class="SpellE">sftponly</span> -c "music <span class="SpellE">uploader</span> SFTP user" <span class="SpellE">user_name</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">где <span style="mso-ansi-language:EN-US" lang="EN-US">user</span>_<span style="mso-ansi-language:EN-US" lang="EN-US">name</span> – имя пользователя для
+доступа по SFTP</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">создать</span><span style="mso-ansi-language:EN-US"> </span>пароль<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">passwd</span> <span class="SpellE">user_name</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">где <span style="mso-ansi-language:EN-US" lang="EN-US">user</span>_<span style="mso-ansi-language:EN-US" lang="EN-US">name</span> – имя пользователя для
+доступа по SFTP</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">создать</span><span style="mso-ansi-language:EN-US"> </span>папку<span style="mso-ansi-language:EN-US"> <a name="__DdeLink__822_2001336997"><span style="color:green" lang="EN-US">/</span></a><span class="SpellE"><span style="color:green" lang="EN-US">usr</span></span><span style="color:green" lang="EN-US">/local/music<o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">mkdir</span> /<span class="SpellE">usr</span>/local/music</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">- поменять владельца на <span style="mso-ansi-language:
+EN-US" lang="EN-US">root</span> (все элементы пути!)</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chown</span></span></i><span style="background:
+silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US"> <span class="SpellE"><i>root:root</i></span><i>
+/<span class="SpellE">usr</span>/local/music<o:p></o:p></i></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chown</span></span></i><span style="background:
+silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US"> <span class="SpellE"><i>root:root</i></span><i>
+/<span class="SpellE">usr</span>/local<o:p></o:p></i></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">sudo</span></i></span><i><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">chown</span></i></span><span style="background:silver;
+mso-highlight:silver" lang="EN-US"> </span><i><span style="background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">root</span><span style="background:silver;mso-highlight:silver">:</span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">root</span><span style="background:silver;mso-highlight:silver"> /</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">usr</span></i></span><i><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- лишить права на запись</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">chmod</span></span>
+0755 /<span class="SpellE">usr</span>/local/music</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">chmod</span></span>
+0755 /<span class="SpellE">usr</span>/local<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">chmod</span></span>
+0755 /<span class="SpellE">usr</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">создать</span><span style="mso-ansi-language:EN-US"> </span>папку<span style="mso-ansi-language:EN-US"> <span style="color:green;
+mso-bidi-font-style:italic" lang="EN-US">/<span class="SpellE">usr</span>/local/music/uploads</span><i><span lang="EN-US"><o:p></o:p></span></i></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">mkdir</span> /<span class="SpellE">usr</span>/local/music/uploads</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal">задать<span style="mso-ansi-language:EN-US"> </span>права<span style="mso-ansi-language:EN-US"> </span>и<span style="mso-ansi-language:EN-US">
+</span>владельца<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chmod</span> 0755 /<span class="SpellE">usr</span>/local/musi</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US">c/uploads</span></i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chown</span> <span class="SpellE">user_name:users</span> /<span class="SpellE">usr</span>/local/music/uploads</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">где <span style="mso-ansi-language:EN-US" lang="EN-US">user</span>_<span style="mso-ansi-language:EN-US" lang="EN-US">name</span> – имя пользователя для
+доступа по SFTP</p>
+
+<p class="MsoNormal"><br>
+- отредактировать <span style="color:green">/</span><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">etc</span><span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">ssh</span></span><span style="color:green">/</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">sshd</span></span><span style="color:green">_</span><span class="SpellE"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">config</span></span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">заменить </p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">Subsystem <span class="SpellE">sftp</span>
+/<span class="SpellE">usr/lib/openssh/sftp</span>-server</span><span style="color:#993366;mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">на<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">#Subsystem <span class="SpellE">sftp</span>
+/<span class="SpellE">usr/lib/openssh/sftp</span>-server<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">Subsystem <span class="SpellE">sftp</span>
+internal-<span class="SpellE">sftp</span></span><span style="color:#993366;mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">и<span style="mso-ansi-language:EN-US"> </span>добавить<span style="mso-ansi-language:EN-US"> </span>в<span style="mso-ansi-language:EN-US">
+</span>конец<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">Match user <span class="SpellE">user_name</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="SpellE">ChrootDirectory</span>
+/<span class="SpellE">usr</span>/local/music<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="SpellE">ForceCommand</span>
+internal-<span class="SpellE">sftp</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>X11Forwarding no<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="SpellE">AllowTcpForwarding</span>
+no</span><span style="color:#993366;mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><br style="mso-special-character:line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">перезапустить</span><span style="mso-ansi-language:EN-US" lang="EN-US">
+SSH<o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">sudo</span></i></span><i><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span></i><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">restart</span><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">ssh</span></i></span><i><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- подключиться <span style="mso-ansi-language:
+EN-US" lang="EN-US">SFTP</span>-клиентом (к примеру, <span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">FileZilla</span></span>)</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- выгрузить в папку <span class="SpellE"><b>uploads</b></span>
+mp3-файлы </p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><b>- зайти в панель управления радио, обновить <span class="SpellE">медиатеку</span> и проверить, что система видит mp3-файлы и
+корректно читает теги<br>
+<br style="mso-special-character:line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--><o:p></o:p></b></p>
+
+<b><span style="font-size:11.0pt;font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Calibri;mso-ansi-language:RU;mso-fareast-language:
+RU;mso-bidi-language:AR-SA"><br style="page-break-before:always" clear="all">
+</span></b>
+
+<p class="MsoNormal"><b>11</b>) <b>Настройка планировщика задач <span class="SpellE">cron</span><o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Для выполнения операции резервного копирования БД следует
+создать пользователя <span class="SpellE"><span style="mso-ansi-language:
+EN-US" lang="EN-US">MySQL</span></span><span lang="EN-US"> </span>с расширенными привилегиями </p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- открыть <span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">phpMyAdmin</span></span><span lang="EN-US"> </span><b><span style="color:red">по </span></b><b><span style="color:red;
+mso-ansi-language:EN-US" lang="EN-US">https</span><span style="color:red"><o:p></o:p></span></b></p>
+
+<p class="MsoNormal">- создать пользователя <b><span style="mso-ansi-language:
+EN-US" lang="EN-US">radio</span>_<span class="SpellE">backup</span></b> <span style="mso-ansi-language:EN-US" lang="EN-US">c</span><span lang="EN-US"> </span>паролем</p>
+
+<p class="MsoNormal">- дать привилегии пользователю <b><span style="mso-ansi-language:EN-US" lang="EN-US">radio</span>_</b><b><span style="mso-ansi-language:EN-US" lang="EN-US">backup</span></b><span style="mso-spacerun:yes">&nbsp; </span>для выполнения запросов SELECT, INSERT,
+CREATE, DROP, INDEX, ALTER, LOCK TABLES для базы данных <b><span style="mso-ansi-language:EN-US" lang="EN-US">radio</span></b> </p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Создать папки для хранения резервных копий</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">создать</span><span style="mso-ansi-language:EN-US"> </span><span class="SpellE">папк</span><span style="mso-ansi-language:EN-US" lang="EN-US">и <o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">mkdir</span> /<span class="SpellE">usr</span>/local/backup<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">mkdir</span> /<span class="SpellE">usr</span>/local/backup/auto<o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">mkdir</span> /<span class="SpellE">usr</span>/local/backup/manual</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- <span class="SpellE"><span class="GramE">дать</span></span> <span class="SpellE">права</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+<span class="SpellE">chmod</span> 0755 /<span class="SpellE">usr</span>/local/backup/*</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">Далее следует скопировать <span class="SpellE">скрипты</span>
+задач <span class="SpellE">cron</span> и установить их.</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- создать папку <span style="color:green">/<span class="SpellE">usr</span>/<span class="SpellE">local</span>/<span class="SpellE">cronjobs</span></span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">скопировать</span><span style="mso-ansi-language:EN-US"> </span>файлы<span style="mso-ansi-language:EN-US"> </span>из<span style="mso-ansi-language:EN-US">
+<span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">.install/<span class="SpellE">config/usr/local/cronjobs/radio_cron_schedule_minute.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">.install/<span class="SpellE">config/usr/local/cronjobs/radio_cron_ices_minute.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">.install/<span class="SpellE">config/usr/local/cronjobs/radio_cron_backup_minute.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">.install/<span class="SpellE">config/usr/local/cronjobs/radio_backup_sql_export.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:blue;mso-ansi-language:EN-US" lang="EN-US">.install/<span class="SpellE">config/usr/local/cronjobs/radio_backup_sql_import.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span class="GramE"><span style="mso-ansi-language:
+EN-US" lang="EN-US">в</span></span><span style="mso-ansi-language:EN-US" lang="EN-US"> </span>папку<span style="mso-ansi-language:EN-US"> <span style="color:green" lang="EN-US">/<span class="SpellE">usr/local/cronjobs</span></span><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">отредактировать</span><span style="mso-ansi-language:EN-US"> </span>файлы<span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:green;mso-ansi-language:EN-US" lang="EN-US">/<span class="SpellE">usr/local/cronjobs/radio_backup_sql_export.sh</span></span><span style="mso-ansi-language:EN-US" lang="EN-US"> </span>и<span style="mso-ansi-language:
+EN-US"> <span style="color:green" lang="EN-US">/<span class="SpellE">usr/local/cronjobs/radio_backup_sql_import.sh</span></span><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal">и прописать в них настройки соединения с базой данных для
+пользователя<span style="mso-spacerun:yes">&nbsp; </span><b><span style="mso-ansi-language:EN-US" lang="EN-US">radio</span>_<span class="SpellE">backup</span></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- дать права на выполнение</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">chmod</span></i></span><i><span style="background:
+silver;mso-highlight:silver"> 0755 /</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:
+EN-US" lang="EN-US">usr</span></i></span><i><span style="background:silver;mso-highlight:
+silver">/</span></i><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">local</span><span style="background:silver;
+mso-highlight:silver">/</span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">cronjobs</span></i></span><i><span style="background:silver;mso-highlight:silver">/*</span><o:p></o:p></i></p>
+
+<p class="MsoNormal"><span style="mso-spacerun:yes">&nbsp;</span></p>
+
+<p class="MsoNormal">добавить задачу в расписание рута</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ <span class="SpellE">sudo</span> <span class="SpellE">crontab</span> -<span class="SpellE">e</span></span><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">дописать<span style="mso-ansi-language:EN-US"> </span>в<span style="mso-ansi-language:EN-US"> </span>конец<span style="mso-ansi-language:
+EN-US"> </span>файла<span style="mso-ansi-language:EN-US"> </span>задач<span style="mso-ansi-language:EN-US" lang="EN-US"> <o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">* * * * * /<span class="SpellE">usr/local/cronjobs/radio_cron_schedule_minute.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">* * * * * /<span class="SpellE">usr/local/cronjobs/radio_cron_ices_minute.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">* * * * * /<span class="SpellE">usr/local/cronjobs/radio_cron_backup_minute.sh</span><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="color:#993366;background:silver;
+mso-highlight:silver;mso-ansi-language:EN-US" lang="EN-US">0 6<span class="GramE">,18</span> *
+* * /<span class="SpellE">usr/local/cronjobs/radio_backup_sql_export.sh</span>
+auto</span><span style="color:#993366;mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b>Последняя строка настраивает периодичность выполнения
+задач автоматического сохранения резервной копии базы данных </b>(в данном
+случае, каждый день в 6:00 и 18:00<span class="GramE"> )</span></p>
+
+<span style="font-size:11.0pt;font-family:Calibri;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Calibri;mso-ansi-language:RU;mso-fareast-language:RU;
+mso-bidi-language:AR-SA"><br style="page-break-before:always" clear="all">
+</span>
+
+<p class="MsoNormal"><b>12</b>) <b>Проверка работоспособности</b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- проверить, что работает интерфейс управления радио </p>
+
+<p class="MsoNormal">(хост <span class="SpellE">http</span><span style="mso-ansi-language:EN-US" lang="EN-US">s</span>://192.168.0.100 <span class="GramE">выбран</span>
+для примера)</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span class="SpellE">http</span><span style="mso-ansi-language:EN-US" lang="EN-US">s</span>://192.168.0.100/<span class="SpellE">radio</span>/</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">должен открыться интерфейс управления радио</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- произвести обновление <span class="SpellE">медиатеки</span>
+(проверить, что читаются файлы и теги)</p>
+
+<p class="MsoNormal">- создать тестовый <span class="SpellE">плейлист</span>
+(динамический, все треки, — с пустым фильтром)</p>
+
+<p class="MsoNormal">- поставить <span class="SpellE">плейлист</span> в расписание
+на прошедшую дату, подождать 1 минуту.</p>
+
+<p class="MsoNormal">- проверить работу модуля выборки треков для <span class="SpellE">Ices</span></p>
+
+<p class="MsoNormal"><span style="mso-spacerun:yes">&nbsp;</span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">php</span></span>
+/<span class="SpellE">usr/local/etc/modules/nextsong.php</span></span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">должен выдавать треки согласно результатам отбора <span class="SpellE">плейлиста</span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span><span class="GramE">запустить</span><span style="mso-ansi-language:EN-US"> <b><span lang="EN-US">Ices</span></b><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+service ices start</span></i><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal">- проверить отсутствие ошибок</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- проверить, что генератор потока присоединился к северу
+ретрансляции</p>
+
+<p class="MsoNormal">Зайти на http://192.168.0.100:8000/status.xsl</p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- должен быть подключен <span class="SpellE">mountpoint</span>
+<b>/<span class="SpellE">mystream</span><o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">прослушать радио, подключившись к потоку <b>/<span class="SpellE">mystream</span></b> с помощью плеера поддерживающего
+воспроизведение потокового вещания, например, <b>VLC</b>/<span class="SpellE"><b>Winamp</b></span><b><o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">- перезапустить <span class="SpellE">Ices</span> (не выключая воспроизведение
+радио)</p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:silver">$ </span></i><span class="SpellE"><i><span style="background:silver;mso-highlight:silver;
+mso-ansi-language:EN-US" lang="EN-US">sudo</span></i></span><i><span style="background:silver;mso-highlight:silver" lang="EN-US"> </span><span class="SpellE"><span style="background:silver;mso-highlight:silver">service</span></span><span style="background:silver;mso-highlight:silver"> <span class="SpellE">ices</span> <span class="SpellE">restart</span></span><o:p></o:p></i></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">плеер должен <span class="GramE">через</span> насколько секунд
+переключиться на следующий трек</p>
+
+<p class="MsoNormal"><i><o:p>&nbsp;</o:p></i></p>
+
+<p class="MsoNormal">- перезагрузить систему и проверить, что запускаются <span class="SpellE"><b>Icecast</b></span> и <span class="SpellE"><b>Ices</b></span><b><o:p></o:p></b></p>
+
+<p class="MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><b>13</b>)<b> После завершения работ по установке и
+настройке<o:p></o:p></b></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">- </span>Выключить<span style="mso-ansi-language:EN-US"> <span class="SpellE"><span lang="EN-US">PhpMyAdmin</span></span><span lang="EN-US"><o:p></o:p></span></span></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+a2dissite <span class="SpellE">phpmyadmin</span><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="background:silver;mso-highlight:
+silver;mso-ansi-language:EN-US" lang="EN-US">$ <span class="SpellE"><span class="GramE">sudo</span></span>
+service apache2 restart</span></i><i><span style="mso-ansi-language:
+EN-US" lang="EN-US"><o:p></o:p></span></i></p>
+
+<p class="MsoNormal"><i><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></i></p>
+
+<p class="MsoNormal">-Проверить, что <span class="SpellE"><span style="mso-ansi-language:EN-US" lang="EN-US">phpmyadmin</span></span> не доступен по <span style="mso-ansi-language:EN-US" lang="EN-US">URL</span></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+</div>
+
+
+
+
+</body></html>
