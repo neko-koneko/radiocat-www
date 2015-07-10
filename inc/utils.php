@@ -605,9 +605,30 @@ function translitIt2($str)
 }
 
 function get_cute_file_size($size)
-{
-if(floor($size / 1000000) > 1) return floor($size / 1000000)." МБ";
-else if(floor($size / 1000) > 1) return floor($size / 1000)." КБ";
+{if(floor($size / 1073741824) > 1) return floor($size / 1073741824)." ГБ";
+else if(floor($size / 1048576) > 1) return floor($size / 1048576)." МБ";
+else if(floor($size / 1024) > 1) return floor($size / 1024)." КБ";
 else return floor($size)." Б";
+}
+
+function get_cute_file_size_ex($size,$round=2){	$blocks = array('Б','кБ','МБ','ГБ','ТБ');
+	$result = array();
+	do{
+		$quot = $size / 1024;
+		$rem = bcmod ($size , 1024);
+		$result[]=$rem;
+		$size = $quot;
+	}while ($quot>1);
+//    $result[] = $rem;
+   // print_r($result);
+
+	$string_elements=array();
+	$i = 0;
+	foreach ($result as $current_size){		$string_elements[] = $current_size.' '.$blocks[$i];
+		$i++;	}
+
+	$arr = array_slice($string_elements,-$round,$round);
+	//$arr = $string_elements;
+	return implode(' ', array_reverse($arr));
 }
 ?>

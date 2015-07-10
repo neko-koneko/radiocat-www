@@ -263,6 +263,12 @@ echo '<div class="calendar_nav">
     if ($_POST['show_all']!='Y'){
 
     		echo '<div class="fleft w100">';
+			$disksize = disk_total_space('/');
+			$diskfree = disk_free_space('/');
+            echo '<div class="fleft w100 filter_result_info pad20 black">';
+			echo 'Свободно на диске: <span class="green">'.get_cute_file_size_ex($diskfree).'</span>; Размер диска: <span class="green">'.get_cute_file_size_ex($disksize).'</span> ';
+    		echo '</div>';
+
    			echo '<h1 class="w100 tacentr">Для отображения всей медиатеки нажмите Отобрать при пустом фильтре</h1>';
     		echo '</div>';
 
@@ -301,14 +307,18 @@ echo '<div class="calendar_nav">
 
 					$all_tracks = get_tracks_by_filter($data,$order_by,$order_type);
 
-		            echo '<div class="fleft w100 pad5 filter_result_info">';
+		            echo '<div class="fleft w100 pad20 filter_result_info black">';
 		             $pl_time = 0;
+		             $pl_filesize = 0;
 		             foreach ($all_tracks as $data)
 		               {
 		                 $pl_time += $data['length'];
+		                 $pl_filesize += $data['size'];
 		               }
-				     echo 'Отобрано: '.count($all_tracks).' треков ';
-				     echo '<span class="maroon">'.sec_to_hour_min_sec($pl_time).' ('.$pl_time.') сек </span> ';
+				     echo 'Отобрано: <span class="lightblue">'.count($all_tracks).' треков</span>; ';
+				     echo 'Длительность: <span class="maroon">'.sec_to_hour_min_sec($pl_time).' сек</span>; ';
+				     echo 'Занимает размер на диске: <span class="red">'.get_cute_file_size_ex($pl_filesize).'</span> <br>';
+
 
 		     		echo '</div>';
 
