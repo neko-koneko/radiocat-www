@@ -265,8 +265,18 @@ echo '<div class="calendar_nav">
     		echo '<div class="fleft w100">';
 			$disksize = disk_total_space('/');
 			$diskfree = disk_free_space('/');
+
+            $musicsize = dirSize($config['media']['media_root_folder']);
+
             echo '<div class="fleft w100 filter_result_info pad20 black">';
-			echo 'Свободно на диске: <span class="green">'.get_cute_file_size_ex($diskfree).'</span>; Размер диска: <span class="green">'.get_cute_file_size_ex($disksize).'</span> ';
+			echo 'Свободно на диске: <span class="green">'.get_cute_file_size_ex($diskfree).'</span>;';
+			if (!empty($config['media']['media_root_folder_quota'])){
+				echo ' Свободно для загрузки: <span class="red">';
+				$r = $config['media']['media_root_folder_quota'] - $musicsize;
+				echo get_cute_file_size_ex($r);
+				echo '</span>;';
+			}
+			echo ' Размер диска: <span class="green">'.get_cute_file_size_ex($disksize).'</span> ';
     		echo '</div>';
 
    			echo '<h1 class="w100 tacentr">Для отображения всей медиатеки нажмите Отобрать при пустом фильтре</h1>';

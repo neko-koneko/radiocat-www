@@ -76,7 +76,11 @@ echo '<div class="calendar_nav">
        echo '<h1>Управление</h1>';
        echo '</div>';
   echo "</div>";
-
+  echo '<div class="fleft three movedownonsmall movedownonmedium">';
+       echo '<div class="main_plate pad10 mar10 asc pointer" style="'.$style.'" onclick="window.location.href=\''.$base.'/info/\'" >';
+       echo '<h1>Информация</h1>';
+       echo '</div>';
+  echo "</div>";
  echo '<div class="fleft three movedownonsmall movedownonmedium">';
        echo '<div class="main_plate pad10 mar10 asc pointer" style="'.$style.'" onclick="window.location.href=\''.$base.'/logout/\'" >';
        echo '<h1>Выход</h1>';

@@ -1005,4 +1005,48 @@ function media_library_save_file_data_from_edit_form($file_id,$data)
 }
 
 
+function stat_get_genres(){
+ global $mysqli_connection;
+
+ $filename = mysqli_real_escape_string($mysqli_connection,$filename);
+
+ $result = array();
+
+ $query = mysqli_query($mysqli_connection,
+ "SELECT genre as genre , count(*) as count FROM `files` group by genre
+ORDER BY `count`  DESC");
+
+ if(!$query) {return $result;}
+
+  while ( $row = mysqli_fetch_assoc($query))
+      {
+       $result[] = $row;
+      }
+
+ return $result;
+}
+
+
+function stat_get_active_genres(){
+ global $mysqli_connection;
+
+ $filename = mysqli_real_escape_string($mysqli_connection,$filename);
+
+ $result = array();
+
+ $query = mysqli_query($mysqli_connection,
+ "SELECT `files`.`genre` as genre, COUNT(*) AS `count`
+ FROM `tracks`,`files`,`cron_jobs`
+ WHERE `tracks`.`file_id` = `files`.`id` and `cron_jobs`.`time` >NOW()
+ AND `cron_jobs`.`playlist_id` = `tracks`.`playlist_id`
+ GROUP BY genre");
+
+ if(!$query) {return $result;}
+  while ( $row = mysqli_fetch_assoc($query))
+      {
+       $result[] = $row;
+      }
+
+ return $result;
+}
 ?>

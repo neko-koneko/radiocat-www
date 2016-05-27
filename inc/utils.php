@@ -631,4 +631,13 @@ function get_cute_file_size_ex($size,$round=2){	$blocks = array('Б','кБ','М
 	//$arr = $string_elements;
 	return implode(' ', array_reverse($arr));
 }
+
+function dirSize($directory) {
+    $size = 0;
+    foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory)) as $file){
+        $size+=$file->getSize();
+    }
+    return $size;
+}
+
 ?>
