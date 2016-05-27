@@ -81,7 +81,7 @@ function table_edit_apply_select_row(row_id,control_checkbox_obj)
 		 }
 }
 
-function table_edit_apply_select_row_playing(row_id,play_status_obj,id_prefix)
+function table_edit_apply_select_row_playing(row_id,id_prefix)
 {
    var rows=document.getElementsByName(id_prefix);
 	 for (var i=0;i<rows.length; i++)
@@ -91,7 +91,7 @@ function table_edit_apply_select_row_playing(row_id,play_status_obj,id_prefix)
 	 	CSSClass.remove (row,'playing_row');
       }
 
-        var row = document.getElementById(row_id);
+        var row = document.getElementById(id_prefix+'_'+row_id);
     	CSSClass.add (row,'playing_row');
 }
 

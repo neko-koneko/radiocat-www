@@ -364,10 +364,16 @@ function clear_cart()
  media_library_load_new_playlist_files_id_list();
 }
 
-function show_player()
-{document.getElementById("flying_player").style.visibility="visible";}
+function show_player(filename)
+{document.getElementById("flying_player").style.visibility="visible";
+var player= document.getElementById("player");
+	player.src=filename;
+	player.volume=0.5;
+	player.autoplay=true;
+}
 function hide_player()
-{document.getElementById("flying_player").style.visibility="hidden";}
+{document.getElementById("flying_player").style.visibility="hidden";
+document.getElementById("player").src="";}
 
 
 function show_progress_bar()

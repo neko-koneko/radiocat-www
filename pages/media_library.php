@@ -52,20 +52,23 @@ echo '<script type="text/javascript">media_library_load_new_playlist_files_id_li
 echo '<div id="flying_player" >';
 
 echo '<div class="tcell">';
-	 echo '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="165" height="38" id="niftyPlayer1" align="">
+/*	 echo '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="165" height="38" id="niftyPlayer1" align="">
 	<param name=movie value="'.$base.'/player/niftyplayer.swf">
 	<param name=quality value=high>
 	<param name=bgcolor value=#FFFFFF>
 	<embed src="'.$base.'/player/niftyplayer.swf" quality=high bgcolor=#FFFFFF width="165" height="38" name="niftyPlayer1" align="" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
 	</embed>
-	</object>';
+	</object>';/**/
+echo '<audio controls autoplay id="player">
+		<source src="" type="audio/mpeg">
+	  </audio>';
+
 echo "</div>";
 
-echo '<div class="tcell pad10 maroon pointer tacentr valignmiddle"
+echo '<div style="padding-top:3px; padding-left: 10px; vertical-align: top;" class="tcell maroon pointer tacentr"
                    onclick="
                       table_edit_apply_clear_all_rows_playing(\'media_row\');
                       hide_player();
-                      niftyplayer(\'niftyPlayer1\').stop();
                    ">';
 echo '[X]</div>';
 echo '</div>';
@@ -345,15 +348,7 @@ echo '<div class="calendar_nav">
 					    echo $data['id'];
 				   	    echo '</td><td>';
 
-		                echo '<div class="green_button pointer" onclick="
-		                      show_player();
-		                      table_edit_apply_select_row_playing(\'media_row_'.$i.'\', this,\'media_row\');
-		                      niftyplayer(\'niftyPlayer1\').loadAndPlay(\''.$base.'/media_proxy/'.$data['id'].'\')
-		                      ">
-
-		                   &#9658;
-
-		                   </div>';
+		                echo '<div class="green_button pointer" onclick="table_edit_apply_select_row_playing('.$i.',\'media_row\'); show_player(\''.$base.'/media_proxy/'.$data['id'].'\')"> &#9658;</div>';
 
 				   	    echo '</td><td>';
 				   	    echo $data['count'];
